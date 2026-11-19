@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build Outputs
+dist/
+build/
+*.egg-info/
+
+# Rust Build Artifacts
+target/
+verde_cloud/rust_core/target/
+
+# Python Cache & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Duplicate root video (canonical copy is in frontend/public/videos/)
+Servers_glowing_in_forest_conser*_1080p_gwr_video_mvp.mp4
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Internal Trackers & Excel Spreadsheets
+*.xlsx
+*.xls
+*Tracker*
+*tracker*
+
+# Local Screenshots & Media
+Screenshot*.png
+
+# Local Helper Scripts
+format_like_image.py
+generate_tracker.py
+update_tracker.py

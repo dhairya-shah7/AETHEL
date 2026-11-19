@@ -1,0 +1,44 @@
+name: 'VERDE-Cloud Energy & Carbon Audit'
+description: 'Automated CI/CD carbon, energy, and cloud cost profiler with PR impact badges'
+author: 'VERDE-Cloud'
+branding:
+  icon: 'zap'
+  color: 'green'
+
+inputs:
+  instance_type:
+    description: 'Cloud instance profile (e.g., c5.xlarge, g4dn.xlarge, p3.2xlarge)'
+    required: false
+    default: 'c5.xlarge'
+  region:
+    description: 'Grid emission region (IN_NATIONAL, US_EAST, EU_WEST)'
+    required: false
+    default: 'IN_NATIONAL'
+  baseline_metrics_path:
+    description: 'Path to stored baseline metrics JSON'
+    required: false
+    default: '.verde/baseline_metrics.json'
+  github_token:
+    description: 'GitHub token for posting PR comments'
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  energy_saved_pct:
+    description: 'Percentage of energy saved compared to baseline'
+  carbon_saved_gco2e:
+    description: 'Grams of CO2e avoided'
+  cost_saved_usd:
+    description: 'Dollar savings in compute'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Run VERDE Profiler
+      shell: bash
+      run: |
+        python ${{ github.action_path }}/profiler.py

@@ -1,0 +1,297 @@
+:root {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color-scheme: dark;
+  
+  /* Minimal Green Master Palette */
+  --c-dark-0: #020D0E;       /* Deepest obsidian abyss */
+  --c-dark-1: #051F20;       /* Base midnight forest */
+  --c-dark-2: #0B2B26;       /* Elevated container emerald */
+  --c-surface: #163832;      /* Frosted jade panel */
+  --c-pine: #235347;         /* Structured leaf outline */
+  --c-sage: #8EB69B;         /* Muted botanical text */
+  --c-mint-light: #DAF1DE;   /* Pearlescent high-contrast highlight */
+
+  /* High-Impact Neon Accents */
+  --neon-lime: #bbf451;
+  --neon-emerald: #4ade80;
+  --neon-glow: rgba(187, 244, 81, 0.35);
+  --neon-border: rgba(187, 244, 81, 0.45);
+  
+  /* Liquid Glass Gradients & Specular Sheen */
+  --liquid-glass-bg: linear-gradient(135deg, rgba(22, 56, 50, 0.65) 0%, rgba(11, 43, 38, 0.85) 100%);
+  --liquid-glass-border: linear-gradient(135deg, rgba(218, 241, 222, 0.3) 0%, rgba(142, 182, 155, 0.08) 50%, rgba(187, 244, 81, 0.25) 100%);
+  --liquid-glass-sheen: radial-gradient(circle at 50% 0%, rgba(218, 241, 222, 0.15), transparent 70%);
+
+  /* Text hierarchy */
+  --text-primary: #FFFFFF;
+  --text-secondary: #DAF1DE;
+  --text-muted: #8EB69B;
+  --text-dim: #4D7260;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--c-dark-0);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(35, 83, 71, 0.5), transparent),
+    radial-gradient(circle 600px at 85% 30%, rgba(22, 56, 50, 0.4), transparent),
+    radial-gradient(circle 450px at 15% 75%, rgba(11, 43, 38, 0.45), transparent);
+  background-attachment: fixed;
+}
+
+/* Organic Ambient Mesh Background */
+.ambient-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  background: 
+    radial-gradient(at 20% 15%, rgba(74, 222, 128, 0.08) 0px, transparent 40%),
+    radial-gradient(at 80% 80%, rgba(187, 244, 81, 0.06) 0px, transparent 45%);
+  filter: blur(40px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-dark-0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-surface);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-pine);
+}
+
+/* Liquid Glass Cards */
+.liquid-card {
+  position: relative;
+  background: var(--liquid-glass-bg);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border-radius: 28px;
+  border: 1px solid rgba(142, 182, 155, 0.18);
+  box-shadow: 
+    0 20px 40px -15px rgba(2, 13, 14, 0.8),
+    inset 0 1px 0 0 rgba(218, 241, 222, 0.25),
+    inset 0 -1px 0 0 rgba(11, 43, 38, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.liquid-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(187, 244, 81, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.liquid-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(187, 244, 81, 0.4);
+  box-shadow: 
+    0 28px 50px -15px rgba(2, 13, 14, 0.9),
+    0 0 35px -5px rgba(187, 244, 81, 0.15),
+    inset 0 1px 0 0 rgba(218, 241, 222, 0.45);
+}
+
+.liquid-card:hover::before {
+  opacity: 1;
+}
+
+/* Capsule Left Dock Nav */
+.capsule-dock {
+  background: rgba(11, 43, 38, 0.7);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(142, 182, 155, 0.25);
+  box-shadow: 
+    0 16px 40px -10px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(218, 241, 222, 0.2);
+  border-radius: 9999px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.dock-btn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: var(--c-sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dock-btn:hover {
+  color: var(--neon-lime);
+  background: rgba(35, 83, 71, 0.4);
+  transform: scale(1.08);
+}
+
+.dock-btn.active {
+  color: #020D0E;
+  background: linear-gradient(135deg, var(--neon-lime), #84cc16);
+  box-shadow: 0 0 20px rgba(187, 244, 81, 0.6);
+}
+
+.dock-item:hover {
+  color: var(--neon-lime);
+  background: rgba(35, 83, 71, 0.5) !important;
+  transform: scale(1.06);
+}
+
+.dock-tooltip {
+  position: absolute;
+  left: 62px;
+  background: rgba(5, 31, 32, 0.95);
+  color: #FFFFFF;
+  border: 1px solid rgba(187, 244, 81, 0.4);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(187, 244, 81, 0.2);
+  z-index: 1001;
+}
+
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Tooltip on Hover for Left Dock */
+.dock-btn .tooltip {
+  position: absolute;
+  left: 64px;
+  background: var(--c-dark-1);
+  color: var(--text-primary);
+  border: 1px solid var(--c-pine);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.dock-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Neon Glow Pill Button */
+.neon-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--neon-lime) 0%, #84cc16 100%);
+  color: #020D0E;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(187, 244, 81, 0.45);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.neon-pill-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 40px rgba(187, 244, 81, 0.7);
+}
+
+/* Glass Outline Button */
+.glass-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(22, 56, 50, 0.35);
+  backdrop-filter: blur(12px);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  border: 1px solid rgba(142, 182, 155, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.glass-outline-btn:hover {
+  background: rgba(35, 83, 71, 0.6);
+  color: #FFFFFF;
+  border-color: var(--neon-lime);
+  box-shadow: 0 0 20px rgba(187, 244, 81, 0.2);
+}
+
+/* Ambient Pulse Wave */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+
+.pulse-ambient {
+  animation: pulseGlow 6s infinite ease-in-out;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+input[type="range"] {
+  height: 6px;
+  background: rgba(35, 83, 71, 0.6);
+  border-radius: 999px;
+  outline: none;
+}
+
+select option {
+  background-color: var(--c-dark-1);
+  color: var(--text-primary);
+}
+

@@ -1,0 +1,16 @@
+[package]
+name = "verde_thermal_core"
+version = "0.1.0"
+edition = "2021"
+description = "High-Performance SIMD Thermal Physics and Encrypted Bunker Enclave Accelerator"
+
+[lib]
+name = "verde_thermal_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+pyo3 = { version = "0.23", features = ["extension-module", "abi3-py310"] }
+rayon = "1.8"
+crossbeam = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

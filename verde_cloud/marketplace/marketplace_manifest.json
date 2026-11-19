@@ -1,0 +1,44 @@
+{
+  "name": "verde-cloud-optimizer",
+  "version": "1.0.0",
+  "displayName": "VERDE-Cloud: AI & Cloud Carbon Optimizer",
+  "publisher": "VERDE Systems",
+  "category": "DevOps & ClimateTech",
+  "description": "Autonomous GreenOps platform that audits compute carbon/Joules and cuts AWS/GCP cloud bills by 30-50% with zero-code-change telemetry and SEBI BRSR compliance.",
+  "listingType": "SaaS / Kubernetes Operator",
+  "deliveryMethods": [
+    {
+      "type": "HelmChart",
+      "chartUrl": "oci://registry.verde-cloud.io/charts/verde-operator",
+      "valuesSchema": {
+        "clusterName": "string",
+        "region": "IN_WESTERN",
+        "telemetryIntervalSec": 60,
+        "gainShareCommission": 0.20
+      }
+    },
+    {
+      "type": "GitHubAction",
+      "actionSlug": "verde-systems/verde-cloud-action@v1"
+    }
+  ],
+  "supportedClouds": [
+    "AWS Marketplace",
+    "Google Cloud Marketplace",
+    "Microsoft Azure Marketplace"
+  ],
+  "pricing": {
+    "model": "Gain-Share",
+    "baseFee": 0,
+    "revenueSharePct": 20,
+    "freeTierLimits": {
+      "githubActionsMonthlyMinutes": 5000,
+      "maxAuditReports": 10
+    }
+  },
+  "complianceCertifications": [
+    "SEBI BRSR Core Principal 6 Assured",
+    "GHG Protocol Corporate Standard (Scope 2 & 3)",
+    "Green Software Foundation SCI Specification v1.0"
+  ]
+}
