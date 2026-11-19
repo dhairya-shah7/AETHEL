@@ -3,6 +3,8 @@ import confetti from 'canvas-confetti';
 import { Navbar, TabType } from './components/Navbar';
 import { SidebarDock } from './components/SidebarDock';
 import { VideoBackground } from './components/VideoBackground';
+import { ExecutiveShowcasePage } from './components/pages/ExecutiveShowcasePage';
+import { LiveEngineCockpitPage } from './components/pages/LiveEngineCockpitPage';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { ThermalOpsPage } from './components/pages/ThermalOpsPage';
 import { TelemetryPage } from './components/pages/TelemetryPage';
@@ -14,7 +16,7 @@ import { MarketplacePage } from './components/pages/MarketplacePage';
 import { checkBackendHealth } from './services/api';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [activeTab, setActiveTab] = useState<TabType>('showcase');
   const [selectedCluster, setSelectedCluster] = useState<string>('mumbai');
   const [surgeActive, setSurgeActive] = useState<boolean>(false);
   const [backendOnline, setBackendOnline] = useState<boolean>(false);
@@ -66,6 +68,10 @@ export default function App() {
 
         {/* DYNAMIC ACTIVE MODULE VIEWPORT (Single-Page App Flow) */}
         <main style={{ maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
+          {activeTab === 'showcase' && <ExecutiveShowcasePage />}
+
+          {activeTab === 'cockpit' && <LiveEngineCockpitPage />}
+
           {activeTab === 'overview' && (
             <OverviewPage
               onTriggerAudit={triggerAuditConfetti}

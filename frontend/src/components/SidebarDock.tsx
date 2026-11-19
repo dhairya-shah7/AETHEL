@@ -8,7 +8,9 @@ import {
   ShieldCheck, 
   Zap, 
   Terminal, 
-  Store 
+  Store,
+  Sparkles,
+  Sliders
 } from 'lucide-react';
 import { TabType } from './Navbar';
 
@@ -19,10 +21,12 @@ interface SidebarDockProps {
 
 export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTab }) => {
   const navItems: { id: TabType; label: string; icon: React.ReactNode }[] = [
+    { id: 'showcase', label: 'Executive Showcase', icon: <Sparkles size={20} /> },
+    { id: 'cockpit', label: 'Engine & Traces', icon: <Cpu size={20} /> },
     { id: 'overview', label: 'Overview', icon: <Layers size={20} /> },
     { id: 'thermal', label: 'ThermalOps', icon: <Flame size={20} /> },
     { id: 'telemetry', label: 'Kernel Telemetry', icon: <Activity size={20} /> },
-    { id: 'boavizta', label: 'Boavizta SCI', icon: <Cpu size={20} /> },
+    { id: 'boavizta', label: 'Boavizta SCI', icon: <Sliders size={20} /> },
     { id: 'governance', label: 'SEBI BRSR', icon: <ShieldCheck size={20} /> },
     { id: 'gainshare', label: 'Gain-Share', icon: <Zap size={20} /> },
     { id: 'sandbox', label: 'CI/CD Sandbox', icon: <Terminal size={20} /> },

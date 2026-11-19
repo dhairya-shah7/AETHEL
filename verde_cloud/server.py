@@ -19,6 +19,9 @@ from verde_cloud.action.pr_commenter import generate_markdown_badge
 from verde_cloud.gainshare.cost_engine import VerdeGainShareEngine, CLOUD_PRICING_CATALOG
 from verde_cloud.compliance.brsr_reporter import SebiBrsrAuditReporter
 from verde_cloud.thermal.co_scheduler import CoScheduler
+from verde_cloud.engine.real_optimizer import RealHardwareOptimizer
+from verde_cloud.engine.trace_player import TracePlayer
+from verde_cloud.data.traces.dataset_registry import AUTHENTICATED_DATASETS
 
 app = FastAPI(
     title="AETHEL GreenOps Engine API",
@@ -89,6 +92,12 @@ class AstDistillRequest(BaseModel):
 
 # Singleton Co-Scheduler Engine
 co_scheduler = CoScheduler(node_count=16)
+real_optimizer = RealHardwareOptimizer(hidden_dim=2048, batch_size=64)
+trace_player = TracePlayer(dataset_id="alibaba_pai_gpu")
+
+class BenchmarkRequest(BaseModel):
+    iterations: int = Field(default=30, ge=5, le=100)
+    hidden_dim: int = Field(default=2048, ge=512, le=4096)
 
 # ----------------- Endpoints -----------------
 
@@ -366,6 +375,30 @@ def get_bunker_state():
 def get_thermal_events(limit: int = 50):
     """Returns the live terminal audit stream."""
     return {"events": co_scheduler.event_log[:limit]}
+
+# ----------------- Real Engine Benchmark & Trace Endpoints -----------------
+
+@app.post("/api/engine/benchmark")
+def run_live_benchmark(req: BenchmarkRequest = BenchmarkRequest()):
+    """Executes a real deep neural network benchmark live on host silicon."""
+    opt = RealHardwareOptimizer(hidden_dim=req.hidden_dim, batch_size=64)
+    return opt.run_live_benchmark(iterations=req.iterations)
+
+@app.get("/api/trace/datasets")
+def get_authenticated_datasets():
+    """Returns metadata and citations for authenticated public datacenter traces."""
+    return {"datasets": AUTHENTICATED_DATASETS}
+
+@app.get("/api/trace/frame")
+def get_trace_frame(
+    second: int = Query(0, ge=0, le=120),
+    dataset_id: str = Query("alibaba_pai_gpu")
+):
+    """Replays an authenticated historical datacenter trace frame."""
+    global trace_player
+    if trace_player.dataset_id != dataset_id:
+        trace_player = TracePlayer(dataset_id=dataset_id)
+    return trace_player.get_frame(second=second)
 
 if __name__ == "__main__":
     import uvicorn

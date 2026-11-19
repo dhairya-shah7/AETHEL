@@ -9,10 +9,14 @@ import {
   Zap,
   Terminal,
   Store,
-  Flame
+  Flame,
+  Sparkles,
+  Sliders
 } from 'lucide-react';
 
 export type TabType = 
+  | 'showcase'
+  | 'cockpit'
   | 'overview' 
   | 'thermal'
   | 'telemetry' 
@@ -32,6 +36,8 @@ interface NavbarProps {
 }
 
 const tabMeta: Record<TabType, { title: string; subtitle: string; icon: React.ReactNode }> = {
+  showcase: { title: 'Executive Showcase', subtitle: 'Ground-Truth Comparative Impact (Without vs. With AETHEL)', icon: <Sparkles size={16} /> },
+  cockpit: { title: 'Silicon Engine & Datacenter Traces', subtitle: 'Host PyTorch INT8 Benchmark & Alibaba PAI Trace Replay', icon: <Cpu size={16} /> },
   overview: { title: 'Executive Cockpit', subtitle: 'Platform Overview & Health', icon: <Layers size={16} /> },
   thermal: { title: 'ThermalOps Co-Scheduler', subtitle: 'Silicon Thermal Equilibrium & Resilience Bunker', icon: <Flame size={16} /> },
   telemetry: { title: 'Kernel Telemetry', subtitle: 'RAPL & NVML Power Oscilloscope', icon: <Activity size={16} /> },

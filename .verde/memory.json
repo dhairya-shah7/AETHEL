@@ -225,6 +225,390 @@
           "source": "thermal_co_scheduler"
         }
       ]
+    },
+    {
+      "id": 15,
+      "timestamp_ms": 1795086376949,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "timestamp_ms": 1795086377006,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "timestamp_ms": 1795086377053,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "timestamp_ms": 1795086399626,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "timestamp_ms": 1795086399663,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "timestamp_ms": 1795086399694,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "timestamp_ms": 1795086711578,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "timestamp_ms": 1795086711622,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "timestamp_ms": 1795086711662,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "timestamp_ms": 1795086739327,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "timestamp_ms": 1795086739374,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "timestamp_ms": 1795086739423,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "timestamp_ms": 1795086760927,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "timestamp_ms": 1795086760974,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "timestamp_ms": 1795086761003,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "timestamp_ms": 1795086797341,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "timestamp_ms": 1795086797392,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "timestamp_ms": 1795086797435,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "timestamp_ms": 1795086817563,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "timestamp_ms": 1795086817613,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "timestamp_ms": 1795086817662,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "timestamp_ms": 1795086853465,
+      "content": "[GPU_Silicon_Junction] must_not_exceed 82.0_Celsius_Thermal_Tripwire",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "GPU_Silicon_Junction",
+          "predicate": "must_not_exceed",
+          "object": "82.0_Celsius_Thermal_Tripwire",
+          "confidence": 0.99,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "timestamp_ms": 1795086853501,
+      "content": "[Cascading_Circuit_Breaker] trips_when_queue_slope_exceeds 25_jobs_per_sec",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Cascading_Circuit_Breaker",
+          "predicate": "trips_when_queue_slope_exceeds",
+          "object": "25_jobs_per_sec",
+          "confidence": 0.95,
+          "source": "thermal_co_scheduler"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "timestamp_ms": 1795086853535,
+      "content": "[Stabilization_Dwell_Window] enforces_minimum_hysteresis 60_seconds_cooldown",
+      "category": "thermal_invariant",
+      "token_cost_est": 18,
+      "triplets": [
+        {
+          "subject": "Stabilization_Dwell_Window",
+          "predicate": "enforces_minimum_hysteresis",
+          "object": "60_seconds_cooldown",
+          "confidence": 0.98,
+          "source": "thermal_co_scheduler"
+        }
+      ]
     }
   ]
 }
