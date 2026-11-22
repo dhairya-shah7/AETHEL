@@ -41,7 +41,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', position: 'relative', display: 'flex' }}>
+    <div style={{ minHeight: '100vh', position: 'relative', display: 'flex', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
       {/* 1. CINEMATIC SLOWED NIGHT CLOUD-FOREST DATACENTER VIDEO BACKGROUND */}
       <VideoBackground surgeActive={surgeActive} />
 
@@ -61,7 +61,7 @@ export default function App() {
         />
 
         {/* DYNAMIC ACTIVE MODULE VIEWPORT (Single-Page App Flow) */}
-        <main style={{ maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
+        <main style={{ maxWidth: 1400, width: '100%', margin: '0 auto', position: 'relative', minWidth: 0 }}>
           {activeTab === 'showcase' && (
             <ExecutiveShowcasePage onNavigateNext={() => setActiveTab('cockpit')} />
           )}

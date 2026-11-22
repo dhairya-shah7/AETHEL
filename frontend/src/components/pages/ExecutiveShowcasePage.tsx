@@ -43,7 +43,7 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
   return (
     <div style={{ paddingBottom: 60 }}>
       {/* 1. TOP EXECUTIVE HEADLINE BANNER */}
-      <div style={{
+      <div className="executive-banner" style={{
         background: 'linear-gradient(135deg, rgba(16, 50, 45, 0.75), rgba(7, 25, 23, 0.90))',
         border: '1px solid rgba(187, 244, 81, 0.35)',
         borderRadius: 18,
@@ -56,8 +56,8 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
         flexWrap: 'wrap',
         gap: 20
       }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+        <div style={{ flex: '1 1 280px', minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
             <span style={{
               background: 'rgba(187, 244, 81, 0.15)',
               border: '1px solid rgba(187, 244, 81, 0.4)',
@@ -75,7 +75,7 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
               Non-Technical Impact & ROI Proof
             </span>
           </div>
-          <h1 style={{ fontSize: 26, fontWeight: 800, margin: '4px 0 8px 0', color: '#DAF1DE', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: 800, margin: '4px 0 8px 0', color: '#DAF1DE', letterSpacing: '-0.02em', wordBreak: 'break-word' }}>
             What Happens to an AI Cluster: Without vs. With AETHEL
           </h1>
           <p style={{ fontSize: 14, color: 'var(--c-sage)', margin: 0, maxWidth: 780, lineHeight: 1.5 }}>
@@ -85,17 +85,18 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
         </div>
 
         {/* 3 Core Headline Metrics */}
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <div className="executive-metrics-grid" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', width: '100%', maxWidth: 440 }}>
           <div style={{
             background: 'rgba(5, 31, 32, 0.85)',
             border: '1px solid rgba(142, 182, 155, 0.25)',
             borderRadius: 12,
-            padding: '12px 18px',
+            padding: '12px 14px',
             textAlign: 'center',
-            minWidth: 130
+            flex: '1 1 90px',
+            minWidth: 0
           }}>
             <div style={{ fontSize: 11, color: 'var(--c-sage)', fontWeight: 600 }}>CLOCK SPEED</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: '#bbf451', marginTop: 2 }}>+35% Saved</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#bbf451', marginTop: 2 }}>+35% Saved</div>
             <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Zero throttling</div>
           </div>
 
@@ -103,12 +104,13 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             background: 'rgba(5, 31, 32, 0.85)',
             border: '1px solid rgba(142, 182, 155, 0.25)',
             borderRadius: 12,
-            padding: '12px 18px',
+            padding: '12px 14px',
             textAlign: 'center',
-            minWidth: 130
+            flex: '1 1 90px',
+            minWidth: 0
           }}>
             <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>BILL REDUCTION</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: '#38bdf8', marginTop: 2 }}>38.4% Cut</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8', marginTop: 2 }}>38.4% Cut</div>
             <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Cloud bill savings</div>
           </div>
 
@@ -116,12 +118,13 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             background: 'rgba(5, 31, 32, 0.85)',
             border: '1px solid rgba(142, 182, 155, 0.25)',
             borderRadius: 12,
-            padding: '12px 18px',
+            padding: '12px 14px',
             textAlign: 'center',
-            minWidth: 130
+            flex: '1 1 90px',
+            minWidth: 0
           }}>
             <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>AVOIDED LOSS</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: '#4ade80', marginTop: 2 }}>$1,280/mo</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#4ade80', marginTop: 2 }}>$1,280/mo</div>
             <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Per 8-GPU rack</div>
           </div>
         </div>
@@ -407,7 +410,7 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
           gap: 16
         }}>
           {Object.values(datasets).map((ds) => (

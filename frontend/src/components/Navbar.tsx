@@ -59,147 +59,157 @@ export const Navbar: React.FC<NavbarProps> = ({
   const current = tabMeta[activeTab] || tabMeta.showcase;
 
   return (
-    <header className="app-top-navbar" style={{
-      position: 'sticky',
-      top: 16,
-      zIndex: 100,
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '12px 22px',
-      background: 'rgba(5, 31, 32, 0.85)',
-      backdropFilter: 'blur(28px) saturate(180%)',
-      WebkitBackdropFilter: 'blur(28px) saturate(180%)',
-      borderRadius: 9999,
-      border: '1px solid rgba(142, 182, 155, 0.25)',
-      boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(218, 241, 222, 0.25)',
-      marginBottom: 32,
-      gap: 12
-    }}>
-      {/* 1. Left: Current Active Step Pill */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          padding: '6px 14px',
-          borderRadius: 999,
-          background: 'rgba(187, 244, 81, 0.12)',
-          border: '1px solid rgba(187, 244, 81, 0.35)',
-          color: '#bbf451'
-        }}>
-          {current.icon}
-          <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.5 }}>{current.title.toUpperCase()}</span>
-        </div>
-      </div>
-
-      {/* 2. Center: 3-Step App Flow Switcher */}
-      <div className="navbar-step-switcher" style={{
-        display: 'flex',
+    <>
+      {/* 1. DESKTOP NAVBAR (>= 1024px) */}
+      <header className="app-top-navbar navbar-desktop" style={{
+        position: 'sticky',
+        top: 16,
+        zIndex: 100,
+        width: '100%',
         alignItems: 'center',
-        gap: 6,
-        background: 'rgba(2, 13, 14, 0.7)',
-        padding: '4px 6px',
-        borderRadius: 999,
-        border: '1px solid rgba(142, 182, 155, 0.25)'
+        justifyContent: 'space-between',
+        padding: '12px 22px',
+        background: 'rgba(5, 31, 32, 0.85)',
+        backdropFilter: 'blur(28px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(28px) saturate(180%)',
+        borderRadius: 9999,
+        border: '1px solid rgba(142, 182, 155, 0.25)',
+        boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(218, 241, 222, 0.25)',
+        marginBottom: 32,
+        gap: 12
       }}>
-        <button
-          onClick={() => setActiveTab('showcase')}
-          style={{
-            background: activeTab === 'showcase' ? '#bbf451' : 'transparent',
-            color: activeTab === 'showcase' ? '#051f20' : '#DAF1DE',
-            fontWeight: activeTab === 'showcase' ? 800 : 600,
-            fontSize: 12,
-            padding: '6px 14px',
-            borderRadius: 999,
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
+        {/* Left: Current Active Step Pill */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+          <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 6
-          }}
-        >
-          <Sparkles size={13} />
-          <span>1. Showcase</span>
-        </button>
-
-        <button
-          onClick={() => setActiveTab('cockpit')}
-          style={{
-            background: activeTab === 'cockpit' ? '#bbf451' : 'transparent',
-            color: activeTab === 'cockpit' ? '#051f20' : '#DAF1DE',
-            fontWeight: activeTab === 'cockpit' ? 800 : 600,
-            fontSize: 12,
+            gap: 8,
             padding: '6px 14px',
             borderRadius: 999,
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6
-          }}
-        >
-          <Cpu size={13} />
-          <span>2. Live Engine</span>
-        </button>
+            background: 'rgba(187, 244, 81, 0.12)',
+            border: '1px solid rgba(187, 244, 81, 0.35)',
+            color: '#bbf451'
+          }}>
+            {current.icon}
+            <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.5 }}>{current.title.toUpperCase()}</span>
+          </div>
+        </div>
 
-        <button
-          onClick={() => setActiveTab('gainshare')}
-          style={{
-            background: activeTab === 'gainshare' ? '#bbf451' : 'transparent',
-            color: activeTab === 'gainshare' ? '#051f20' : '#DAF1DE',
-            fontWeight: activeTab === 'gainshare' ? 800 : 600,
-            fontSize: 12,
-            padding: '6px 14px',
-            borderRadius: 999,
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6
-          }}
-        >
-          <Zap size={13} />
-          <span>3. Savings</span>
-        </button>
-      </div>
-
-      {/* 3. Right: Cluster Selector */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-        <div style={{
+        {/* Center: 3-Step App Flow Switcher */}
+        <div className="navbar-step-switcher" style={{
           display: 'flex',
           alignItems: 'center',
           gap: 6,
-          background: 'rgba(2, 13, 14, 0.6)',
-          padding: '6px 14px',
+          background: 'rgba(2, 13, 14, 0.7)',
+          padding: '4px 6px',
           borderRadius: 999,
           border: '1px solid rgba(142, 182, 155, 0.25)'
         }}>
-          <Server size={12} color="#bbf451" />
-          <select
-            value={selectedCluster}
-            onChange={(e) => setSelectedCluster(e.target.value)}
+          <button
+            onClick={() => setActiveTab('showcase')}
             style={{
-              background: 'transparent',
+              background: activeTab === 'showcase' ? '#bbf451' : 'transparent',
+              color: activeTab === 'showcase' ? '#051f20' : '#DAF1DE',
+              fontWeight: activeTab === 'showcase' ? 800 : 600,
+              fontSize: 12,
+              padding: '6px 14px',
+              borderRadius: 999,
               border: 'none',
-              color: '#DAF1DE',
-              fontSize: 11,
-              fontWeight: 600,
               cursor: 'pointer',
-              outline: 'none'
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
             }}
           >
-            <option value="mumbai" style={{ background: '#0B2B26', color: '#FFF' }}>ap-south-1 (Mumbai)</option>
-            <option value="frankfurt" style={{ background: '#0B2B26', color: '#FFF' }}>eu-central-1 (Frankfurt)</option>
-            <option value="oregon" style={{ background: '#0B2B26', color: '#FFF' }}>us-west-2 (Oregon)</option>
-            <option value="virginia" style={{ background: '#0B2B26', color: '#FFF' }}>us-east-1 (N. Virginia)</option>
-          </select>
+            <Sparkles size={13} />
+            <span>1. Showcase</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('cockpit')}
+            style={{
+              background: activeTab === 'cockpit' ? '#bbf451' : 'transparent',
+              color: activeTab === 'cockpit' ? '#051f20' : '#DAF1DE',
+              fontWeight: activeTab === 'cockpit' ? 800 : 600,
+              fontSize: 12,
+              padding: '6px 14px',
+              borderRadius: 999,
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
+            }}
+          >
+            <Cpu size={13} />
+            <span>2. Live Engine</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('gainshare')}
+            style={{
+              background: activeTab === 'gainshare' ? '#bbf451' : 'transparent',
+              color: activeTab === 'gainshare' ? '#051f20' : '#DAF1DE',
+              fontWeight: activeTab === 'gainshare' ? 800 : 600,
+              fontSize: 12,
+              padding: '6px 14px',
+              borderRadius: 999,
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
+            }}
+          >
+            <Zap size={13} />
+            <span>3. Savings</span>
+          </button>
         </div>
-      </div>
-    </header>
+
+        {/* Right: Cluster Selector */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            background: 'rgba(2, 13, 14, 0.6)',
+            padding: '6px 14px',
+            borderRadius: 999,
+            border: '1px solid rgba(142, 182, 155, 0.25)'
+          }}>
+            <Server size={12} color="#bbf451" />
+            <select
+              value={selectedCluster}
+              onChange={(e) => setSelectedCluster(e.target.value)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#DAF1DE',
+                fontSize: 11,
+                fontWeight: 600,
+                cursor: 'pointer',
+                outline: 'none'
+              }}
+            >
+              <option value="mumbai" style={{ background: '#0B2B26', color: '#FFF' }}>ap-south-1 (Mumbai)</option>
+              <option value="frankfurt" style={{ background: '#0B2B26', color: '#FFF' }}>eu-central-1 (Frankfurt)</option>
+              <option value="oregon" style={{ background: '#0B2B26', color: '#FFF' }}>us-west-2 (Oregon)</option>
+              <option value="virginia" style={{ background: '#0B2B26', color: '#FFF' }}>us-east-1 (N. Virginia)</option>
+            </select>
+          </div>
+        </div>
+      </header>
+
+      {/* 2. MOBILE / TABLET HEADER (< 1024px): A SINGLE CLEAN NORMAL PAGE NAME ON TOP */}
+      <header className="app-top-navbar navbar-mobile">
+        <div className="navbar-mobile-title">
+          {current.icon}
+          <span>{current.title}</span>
+        </div>
+      </header>
+    </>
   );
 };
