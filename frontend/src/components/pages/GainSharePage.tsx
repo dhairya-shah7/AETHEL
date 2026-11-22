@@ -68,13 +68,13 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
       {/* Header */}
       <div>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#bbf451' }}>
-          STEP 3: BUSINESS ROI & FINOPS
+          STEP 3: SAVINGS CALCULATOR
         </span>
         <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
-          Zero-Risk Cloud Savings Calculator
+          Cloud Bill Savings Calculator
         </h2>
         <p style={{ fontSize: 14, color: 'var(--c-sage)', marginTop: 8 }}>
-          Pay $0 upfront. Select your cloud provider and number of GPUs or servers to see your exact monthly cash savings. Zero risk: we only take a 20% cut of verified savings. If we don't save you money, you owe us nothing.
+          Calculate your exact monthly savings on AWS, Google Cloud, or Azure based on how many servers you run. Zero upfront cost: we only succeed when you save money.
         </p>
       </div>
 

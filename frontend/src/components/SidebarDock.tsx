@@ -21,10 +21,10 @@ interface SidebarDockProps {
 
 export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTab }) => {
   const navItems: { id: TabType; label: string; shortLabel: string; icon: React.ReactNode }[] = [
-    { id: 'showcase', label: '1. Executive Showcase', shortLabel: 'Showcase', icon: <Sparkles size={19} /> },
-    { id: 'cockpit', label: '2. Live Silicon Engine', shortLabel: 'Live Engine', icon: <Cpu size={19} /> },
-    { id: 'gainshare', label: '3. Cloud Savings Calculator', shortLabel: 'Savings', icon: <Zap size={19} /> },
-    { id: 'overview', label: 'Full Diagnostics (Advanced)', shortLabel: 'More', icon: <Layers size={17} /> },
+    { id: 'showcase', label: '1. Overview', shortLabel: 'Overview', icon: <Sparkles size={19} /> },
+    { id: 'cockpit', label: '2. Live Test', shortLabel: 'Live Test', icon: <Cpu size={19} /> },
+    { id: 'gainshare', label: '3. Savings Calculator', shortLabel: 'Savings', icon: <Zap size={19} /> },
+    { id: 'overview', label: '4. Diagnostics', shortLabel: 'Diagnostics', icon: <Layers size={17} /> },
   ];
 
   return (

@@ -144,10 +144,10 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
           </div>
           <div>
             <h1 style={{ fontSize: 22, fontWeight: 800, margin: 0, color: '#DAF1DE' }}>
-              Live Engine & Trace Cockpit (Technical Proof Machine)
+              Live AI Performance & Memory Test
             </h1>
             <p style={{ fontSize: 13, margin: '2px 0 0 0', color: 'var(--c-sage)' }}>
-              Real PyTorch Execution on Host Silicon & Authenticated Production Datacenter Trace Replay
+              Run real AI calculations right now on your machine to test memory savings, or replay real cloud server traffic.
             </p>
           </div>
         </div>
@@ -168,10 +168,10 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               borderRadius: 6,
               letterSpacing: '0.05em'
             }}>
-              PILLAR 1: LIVE SILICON EXECUTION
+              TEST 1: LIVE MEMORY TEST
             </span>
             <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: '#DAF1DE' }}>
-              Real Host PyTorch Optimization Benchmark (Zero Mocks)
+              Real AI Memory Optimization Test
             </h2>
           </div>
 
@@ -216,7 +216,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               }}
             >
               <Zap size={16} color="#051f20" />
-              {benchmarkLoading ? 'Running Real PyTorch Layers...' : 'Run Live PyTorch Benchmark'}
+              {benchmarkLoading ? 'Running Real AI Model...' : 'Run Live AI Test'}
             </button>
           </div>
         </div>
@@ -237,7 +237,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               padding: 18
             }}>
               <div style={{ fontSize: 11, color: '#fca5a5', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
-                BASELINE FP32 (STATUS QUO)
+                STANDARD MODE (FP32)
               </div>
               <div style={{ fontSize: 24, fontWeight: 800, color: '#DAF1DE', marginBottom: 4 }}>
                 {benchmarkResult.baseline_fp32.total_time_ms} <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--c-sage)' }}>ms total</span>
@@ -246,7 +246,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                 Avg Latency: <strong>{benchmarkResult.baseline_fp32.avg_latency_per_pass_ms} ms / pass</strong>
               </div>
               <div style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-                Weights in RAM: <strong style={{ color: '#fca5a5' }}>{benchmarkResult.baseline_fp32.model_weights_mb} MB</strong> (32-bit floats)
+                Weights in RAM: <strong style={{ color: '#fca5a5' }}>{benchmarkResult.baseline_fp32.model_weights_mb} MB</strong> (Full 32-bit floats)
               </div>
             </div>
 
@@ -258,7 +258,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               padding: 18
             }}>
               <div style={{ fontSize: 11, color: '#bbf451', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
-                AETHEL DYNAMIC INT8 QUANTIZATION
+                AETHEL OPTIMIZED MODE (INT8)
               </div>
               <div style={{ fontSize: 24, fontWeight: 800, color: '#bbf451', marginBottom: 4 }}>
                 {benchmarkResult.optimized_int8.total_time_ms} <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--c-sage)' }}>ms total</span>
@@ -267,7 +267,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                 Avg Latency: <strong>{benchmarkResult.optimized_int8.avg_latency_per_pass_ms} ms / pass</strong>
               </div>
               <div style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-                Weights in RAM: <strong style={{ color: '#bbf451' }}>{benchmarkResult.optimized_int8.model_weights_mb} MB</strong> (8-bit integers)
+                Weights in RAM: <strong style={{ color: '#bbf451' }}>{benchmarkResult.optimized_int8.model_weights_mb} MB</strong> (Compressed 8-bit integers)
               </div>
             </div>
 
@@ -279,7 +279,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               padding: 18
             }}>
               <div style={{ fontSize: 11, color: '#38bdf8', fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>
-                VERIFIED REAL SILICON DELTA
+                VERIFIED MEMORY SAVED
               </div>
               <div style={{ fontSize: 24, fontWeight: 800, color: '#38bdf8', marginBottom: 4 }}>
                 -{benchmarkResult.verified_improvements.memory_reduction_pct}% <span style={{ fontSize: 13, fontWeight: 400, color: 'var(--c-sage)' }}>RAM Footprint</span>
@@ -288,7 +288,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                 Freed Physical RAM: <strong style={{ color: '#bbf451' }}>{benchmarkResult.verified_improvements.freed_ram_mb} MB</strong>
               </div>
               <div style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-                Memory Bus Heat Shed: <strong style={{ color: '#bbf451' }}>~{benchmarkResult.verified_improvements.memory_bus_heat_shed_pct}%</strong>
+                Result: <strong style={{ color: '#bbf451' }}>Frees RAM to fit 4x more AI models on 1 server</strong>
               </div>
             </div>
           </div>
@@ -303,10 +303,10 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
           }}>
             <Cpu size={32} color="#38bdf8" style={{ margin: '0 auto 10px auto', opacity: 0.8 }} />
             <div style={{ fontSize: 14, fontWeight: 600, color: '#DAF1DE', marginBottom: 4 }}>
-              Click "Run Live PyTorch Benchmark" to execute real code on your laptop silicon.
+              Click "Run Live AI Test" to execute real code on your machine.
             </div>
             <div style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-              Runs a real PyTorch Transformer Feed-Forward layer, measures real millisecond latency and memory allocation before vs. after dynamic quantization.
+              Runs a real AI calculation in memory, measuring the exact speed and memory used before vs. after optimization.
             </div>
           </div>
         )}

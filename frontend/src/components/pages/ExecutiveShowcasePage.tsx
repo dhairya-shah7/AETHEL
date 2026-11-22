@@ -69,18 +69,18 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
               letterSpacing: '0.08em',
               textTransform: 'uppercase'
             }}>
-              Executive Showcase
+              Overview
             </span>
             <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-              Non-Technical Impact & ROI Proof
+              How AETHEL Protects Servers & Cuts Costs
             </span>
           </div>
           <h1 style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: 800, margin: '4px 0 8px 0', color: '#DAF1DE', letterSpacing: '-0.02em', wordBreak: 'break-word' }}>
-            What Happens to an AI Cluster: Without vs. With AETHEL
+            What Happens to Cloud Servers: Without vs. With AETHEL
           </h1>
           <p style={{ fontSize: 14, color: 'var(--c-sage)', margin: 0, maxWidth: 780, lineHeight: 1.5 }}>
-            Modern AI datacenters silently waste millions in cloud rentals when GPUs overheat and throttle. 
-            AETHEL predicts thermal runaway 3 minutes ahead, dynamically shedding memory bus heat to preserve 100% throughput.
+            When AI workloads run heavily, servers overheat and silently slow down, wasting your cloud budget. 
+            AETHEL monitors your server temperatures, prevents throttling, and saves up to 35% on your monthly bill.
           </p>
         </div>
 
@@ -95,9 +95,9 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             flex: '1 1 90px',
             minWidth: 0
           }}>
-            <div style={{ fontSize: 11, color: 'var(--c-sage)', fontWeight: 600 }}>CLOCK SPEED</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#bbf451', marginTop: 2 }}>+35% Saved</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Zero throttling</div>
+            <div style={{ fontSize: 11, color: 'var(--c-sage)', fontWeight: 600 }}>PROCESSING SPEED</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#bbf451', marginTop: 2 }}>Full Speed</div>
+            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>No slowdowns</div>
           </div>
 
           <div style={{
@@ -110,8 +110,8 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             minWidth: 0
           }}>
             <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>BILL REDUCTION</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8', marginTop: 2 }}>38.4% Cut</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Cloud bill savings</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8', marginTop: 2 }}>Up to 35% Cut</div>
+            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Direct savings</div>
           </div>
 
           <div style={{
@@ -123,9 +123,9 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             flex: '1 1 90px',
             minWidth: 0
           }}>
-            <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>AVOIDED LOSS</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#4ade80', marginTop: 2 }}>$1,280/mo</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Per 8-GPU rack</div>
+            <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>SERVER HEALTH</div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#4ade80', marginTop: 2 }}>Protected</div>
+            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>0% crash risk</div>
           </div>
         </div>
       </div>
@@ -191,10 +191,10 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
                 borderRadius: 6,
                 letterSpacing: '0.05em'
               }}>
-                WITHOUT AETHEL (STATUS QUO)
+                WITHOUT AETHEL
               </span>
               <h2 style={{ fontSize: 18, fontWeight: 700, margin: '8px 0 0 0', color: '#fca5a5' }}>
-                Unmanaged GPU Cluster
+                Standard Cloud Server
               </h2>
             </div>
             <div style={{
@@ -218,13 +218,13 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             border: '1px solid rgba(239, 68, 68, 0.3)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-              <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>Core Junction Temperature:</span>
+              <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>Server Running Temperature:</span>
               <strong style={{ fontSize: 24, color: isThrottled ? '#ef4444' : '#f59e0b' }}>
                 {unmanagedTemp}°C
               </strong>
             </div>
             <div style={{ fontSize: 11, color: isThrottled ? '#fca5a5' : 'var(--c-sage)' }}>
-              {isThrottled ? 'CRITICAL: Exceeded hardware tripwire (82.0°C). Silicon clocks dropped.' : 'Elevated thermal slope. Approaching throttle limit.'}
+              {isThrottled ? 'CRITICAL: High temperature causes server hardware to automatically slow down.' : 'High temperature buildup under load.'}
             </div>
           </div>
 
@@ -233,12 +233,12 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <TrendingDown size={18} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Clock Speed Throttling: </strong>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Processing Speed: </strong>
                 <span style={{ fontSize: 13, color: '#fca5a5' }}>
-                  {unmanagedClockMhz} MHz <strong>(-{unmanagedClockDropPct}% speed loss)</strong>
+                  {unmanagedClockMhz} MHz <strong>(-{unmanagedClockDropPct}% speed drop)</strong>
                 </span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  GPU internally drops its frequency to prevent hardware meltdown. Compute slows down silently.
+                  The processor slows down to avoid overheating, making AI responses slower.
                 </p>
               </div>
             </div>
@@ -246,7 +246,7 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <Clock size={18} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>AI Training Completion Time: </strong>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Task Completion Time: </strong>
                 <span style={{ fontSize: 13, color: '#fca5a5' }}>
                   {unmanagedJobHours} Hours (Delayed by +{Number((unmanagedJobHours - 10.0).toFixed(1))} hrs)
                 </span>
@@ -259,12 +259,12 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <DollarSign size={18} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Financial Waste: </strong>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Wasted Cloud Spend: </strong>
                 <span style={{ fontSize: 13, color: '#fca5a5' }}>
-                  ${unmanagedDailyWasteUsd} / day burned
+                  ${unmanagedDailyWasteUsd} / day lost
                 </span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  Paying full cloud rental rates ($3.06/hr) for degraded, throttled performance.
+                  Paying full cloud rental price while getting slowed-down performance.
                 </p>
               </div>
             </div>
@@ -272,10 +272,10 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <AlertTriangle size={18} color="#ef4444" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Cascading Outage Risk: </strong>
-                <span style={{ fontSize: 13, color: '#fca5a5' }}>HIGH (Domino Failure Risk)</span>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Crash Risk: </strong>
+                <span style={{ fontSize: 13, color: '#fca5a5' }}>HIGH (Overheating Outage Risk)</span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  When one node crashes, its pods migrate to neighbor nodes, creating an overload domino cascade.
+                  Sudden traffic spikes can cause memory exhaustion and server crashes.
                 </p>
               </div>
             </div>
@@ -302,10 +302,10 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
                 borderRadius: 6,
                 letterSpacing: '0.05em'
               }}>
-                WITH AETHEL (AUTONOMOUS CO-SCHEDULER)
+                WITH AETHEL
               </span>
               <h2 style={{ fontSize: 18, fontWeight: 700, margin: '8px 0 0 0', color: '#bbf451' }}>
-                Silicon-to-Software Equilibrium
+                Protected & Optimized Server
               </h2>
             </div>
             <div style={{
@@ -329,13 +329,13 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             border: '1px solid rgba(187, 244, 81, 0.35)'
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
-              <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>Core Junction Temperature:</span>
+              <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>Server Running Temperature:</span>
               <strong style={{ fontSize: 24, color: '#4ade80' }}>
                 {aethelTemp}°C
               </strong>
             </div>
             <div style={{ fontSize: 11, color: '#bbf451' }}>
-              PROACTIVE STABILIZATION: Preempted surge 180s early. Precision set to {aethelPrecision}.
+              STABLE TEMPERATURE: Workload dynamically managed. Hardware stays cool and fast.
             </div>
           </div>
 
@@ -344,12 +344,12 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <Zap size={18} color="#bbf451" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Clock Speed Maintained: </strong>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Processing Speed: </strong>
                 <span style={{ fontSize: 13, color: '#bbf451' }}>
-                  1,410 MHz <strong>(100% Full Turbo Throughput)</strong>
+                  1,410 MHz <strong>(100% Full Speed Maintained)</strong>
                 </span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  Dynamic INT8 quantization sheds 40% memory bus wattage, keeping silicon cool without clock drops.
+                  Memory optimization keeps chips cool so clock speed never drops.
                 </p>
               </div>
             </div>
@@ -357,12 +357,12 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <CheckCircle2 size={18} color="#bbf451" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>AI Training Completion Time: </strong>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Task Completion Time: </strong>
                 <span style={{ fontSize: 13, color: '#bbf451' }}>
-                  10.0 Hours <strong>(Finished exactly on schedule)</strong>
+                  10.0 Hours <strong>(Finished on schedule)</strong>
                 </span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  Zero clock degradation guarantees deterministic execution time for model training pipelines.
+                  AI jobs complete on time without unexpected stalls or lag.
                 </p>
               </div>
             </div>
@@ -372,10 +372,10 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
               <div>
                 <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Net Client Savings: </strong>
                 <span style={{ fontSize: 13, color: '#bbf451' }}>
-                  $1,280 / month net cash saved
+                  $1,280 / month saved
                 </span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  Calculated automatically by the Gain-Share FinOps engine from Throttling Loss Avoided.
+                  Direct savings from eliminating wasted server hours and throttling.
                 </p>
               </div>
             </div>
@@ -383,10 +383,10 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
               <ShieldCheck size={18} color="#bbf451" style={{ flexShrink: 0, marginTop: 2 }} />
               <div>
-                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Disaster Containment: </strong>
-                <span style={{ fontSize: 13, color: '#bbf451' }}>VERDE Resilience Bunker ARMED</span>
+                <strong style={{ fontSize: 13, color: '#DAF1DE' }}>Crash Protection: </strong>
+                <span style={{ fontSize: 13, color: '#bbf451' }}>Active System Guard</span>
                 <p style={{ fontSize: 11, color: 'var(--c-sage)', margin: '2px 0 0 0' }}>
-                  Critical state is compressed into high-density V-Tokens (-85% memory) with sub-0.1ms epistemic recall.
+                  Protects servers against sudden memory spikes and prevents costly downtime.
                 </p>
               </div>
             </div>

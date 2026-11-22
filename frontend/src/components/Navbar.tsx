@@ -36,10 +36,10 @@ interface NavbarProps {
 }
 
 const tabMeta: Record<TabType, { title: string; subtitle: string; icon: React.ReactNode }> = {
-  showcase: { title: '1. Executive Showcase', subtitle: 'What Happens to AI Servers: Without vs. With AETHEL', icon: <Sparkles size={16} /> },
-  cockpit: { title: '2. Live Silicon Engine', subtitle: 'Live PyTorch Benchmark on Your Machine & Real Alibaba Cluster Replay', icon: <Cpu size={16} /> },
-  gainshare: { title: '3. Cloud Savings Calculator', subtitle: 'Calculate Exact Cash & Carbon Saved on AWS, Azure & GCP', icon: <Zap size={16} /> },
-  overview: { title: 'Full Diagnostics (Advanced)', subtitle: 'Full Cluster Telemetry, ThermalOps & SEBI Reports', icon: <Layers size={16} /> },
+  showcase: { title: '1. Overview', subtitle: 'How AETHEL Protects Servers & Cuts Bills', icon: <Sparkles size={16} /> },
+  cockpit: { title: '2. Live Test', subtitle: 'Real Memory Savings Test & Cloud Traffic Replay', icon: <Cpu size={16} /> },
+  gainshare: { title: '3. Savings Calculator', subtitle: 'Calculate Exact Cash & Carbon Saved on AWS, Azure & GCP', icon: <Zap size={16} /> },
+  overview: { title: '4. Diagnostics', subtitle: 'Detailed Server Health, Telemetry & Reports', icon: <Layers size={16} /> },
   thermal: { title: 'ThermalOps Co-Scheduler', subtitle: 'Silicon Thermal Equilibrium & Resilience Bunker', icon: <Flame size={16} /> },
   telemetry: { title: 'Kernel Telemetry', subtitle: 'RAPL & NVML Power Oscilloscope', icon: <Activity size={16} /> },
   boavizta: { title: 'Boavizta SCI Engine', subtitle: 'Hardware Embodied & Operational Carbon', icon: <Cpu size={16} /> },
@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             <Sparkles size={13} />
-            <span>1. Showcase</span>
+            <span>1. Overview</span>
           </button>
 
           <button
@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             <Cpu size={13} />
-            <span>2. Live Engine</span>
+            <span>2. Live Test</span>
           </button>
 
           <button
@@ -166,6 +166,27 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <Zap size={13} />
             <span>3. Savings</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('overview')}
+            style={{
+              background: activeTab === 'overview' ? '#bbf451' : 'transparent',
+              color: activeTab === 'overview' ? '#051f20' : '#DAF1DE',
+              fontWeight: activeTab === 'overview' ? 800 : 600,
+              fontSize: 12,
+              padding: '6px 14px',
+              borderRadius: 999,
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6
+            }}
+          >
+            <Layers size={13} />
+            <span>4. Diagnostics</span>
           </button>
         </div>
 
