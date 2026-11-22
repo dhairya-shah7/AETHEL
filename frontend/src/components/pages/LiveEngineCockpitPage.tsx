@@ -478,7 +478,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
 
         {/* Trace Comparison: Unmanaged vs AETHEL Cluster */}
         {traceFrame && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+          <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
             {/* Unmanaged Side */}
             <div style={{
               background: 'rgba(239, 68, 68, 0.08)',

@@ -295,3 +295,92 @@ select option {
   color: var(--text-primary);
 }
 
+/* ============================================================
+   RESPONSIVE DESIGN & MOBILE/TABLET FLOATING SAFE NAVIGATION
+   ============================================================ */
+
+/* Main Viewport Container */
+.app-main-viewport {
+  margin-left: 96px;
+  width: calc(100% - 116px);
+  padding: 0 24px 80px 10px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* Desktop Dock */
+.sidebar-dock-desktop {
+  position: fixed;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Mobile Bottom Navigation (Hidden on desktop) */
+.bottom-nav-mobile {
+  display: none;
+}
+
+/* Tablet & Mobile Breakpoint (Below 1024px) */
+@media (max-width: 1023px) {
+  /* Hide desktop side dock */
+  .sidebar-dock-desktop {
+    display: none !important;
+  }
+
+  /* Main container takes full width with safe padding at the bottom */
+  .app-main-viewport {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 0 16px calc(92px + env(safe-area-inset-bottom, 16px)) 16px !important;
+  }
+
+  /* Show floating bottom navigation bar */
+  .bottom-nav-mobile {
+    display: flex !important;
+    position: fixed;
+    bottom: calc(14px + env(safe-area-inset-bottom, 10px));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    align-items: center;
+    justifyContent: space-around;
+    gap: 8px;
+    background: rgba(5, 31, 32, 0.88);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid rgba(187, 244, 81, 0.35);
+    border-radius: 9999px;
+    padding: 6px 10px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 25px rgba(187, 244, 81, 0.2);
+    width: min(92vw, 460px);
+    pointer-events: auto;
+  }
+}
+
+/* Phone Breakpoint (Below 768px) */
+@media (max-width: 767px) {
+  /* On phone, hide the duplicate switcher from top navbar since bottom nav handles it */
+  .navbar-step-switcher {
+    display: none !important;
+  }
+
+  /* Top navbar compact styling */
+  .app-top-navbar {
+    padding: 10px 16px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Responsive Grids collapse to single column */
+  .responsive-split-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+

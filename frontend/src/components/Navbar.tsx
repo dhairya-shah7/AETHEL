@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const current = tabMeta[activeTab] || tabMeta.showcase;
 
   return (
-    <header style={{
+    <header className="app-top-navbar" style={{
       position: 'sticky',
       top: 16,
       zIndex: 100,
@@ -67,17 +67,18 @@ export const Navbar: React.FC<NavbarProps> = ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '12px 26px',
-      background: 'rgba(5, 31, 32, 0.75)',
+      padding: '12px 22px',
+      background: 'rgba(5, 31, 32, 0.85)',
       backdropFilter: 'blur(28px) saturate(180%)',
       WebkitBackdropFilter: 'blur(28px) saturate(180%)',
       borderRadius: 9999,
-      border: '1px solid rgba(142, 182, 155, 0.22)',
+      border: '1px solid rgba(142, 182, 155, 0.25)',
       boxShadow: '0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(218, 241, 222, 0.25)',
-      marginBottom: 36
+      marginBottom: 32,
+      gap: 12
     }}>
-      {/* Current Active Module Breadcrumb */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+      {/* 1. Left: Current Active Step Pill */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -85,25 +86,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           padding: '6px 14px',
           borderRadius: 999,
           background: 'rgba(187, 244, 81, 0.12)',
-          border: '1px solid rgba(187, 244, 81, 0.3)',
+          border: '1px solid rgba(187, 244, 81, 0.35)',
           color: '#bbf451'
         }}>
           {current.icon}
-          <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 1 }}>{current.title.toUpperCase()}</span>
+          <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: 0.5 }}>{current.title.toUpperCase()}</span>
         </div>
-
-        <span style={{ fontSize: 13, color: 'var(--c-sage)', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span>•</span>
-          <span>{current.subtitle}</span>
-        </span>
       </div>
 
-      {/* 3-STEP ESSENTIAL APP FLOW SWITCHER */}
-      <div style={{
+      {/* 2. Center: 3-Step App Flow Switcher */}
+      <div className="navbar-step-switcher" style={{
         display: 'flex',
         alignItems: 'center',
         gap: 6,
-        background: 'rgba(2, 13, 14, 0.65)',
+        background: 'rgba(2, 13, 14, 0.7)',
         padding: '4px 6px',
         borderRadius: 999,
         border: '1px solid rgba(142, 182, 155, 0.25)'
@@ -172,41 +168,14 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
       </div>
 
-      {/* Cluster Selector, Backend Status & Quick Audit Action */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-        {/* Backend Connectivity Status */}
-        <div 
-          title={backendOnline ? "Connected to Python FastAPI Backend (Port 8000)" : "Running Autonomous In-Memory Engine"}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-            fontSize: 11,
-            color: 'var(--c-sage)',
-            background: 'rgba(2, 13, 14, 0.5)',
-            padding: '6px 12px',
-            borderRadius: 999,
-            border: '1px solid rgba(142, 182, 155, 0.2)'
-          }}
-        >
-          <div style={{
-            width: 7,
-            height: 7,
-            borderRadius: '50%',
-            backgroundColor: backendOnline ? '#4ade80' : '#bbf451',
-            boxShadow: `0 0 8px ${backendOnline ? '#4ade80' : '#bbf451'}`
-          }} />
-          <span style={{ fontSize: 11, fontWeight: 700 }}>
-            {backendOnline ? 'BACKEND LIVE' : 'AUTONOMOUS'}
-          </span>
-        </div>
-
+      {/* 3. Right: Cluster Selector & Run Live Audit Action */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
         {/* Cluster Selector */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: 6,
-          background: 'rgba(2, 13, 14, 0.5)',
+          background: 'rgba(2, 13, 14, 0.6)',
           padding: '6px 12px',
           borderRadius: 999,
           border: '1px solid rgba(142, 182, 155, 0.2)'
@@ -236,7 +205,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           className="neon-pill-btn"
           onClick={onTriggerAudit}
-          style={{ padding: '8px 18px', fontSize: 12 }}
+          style={{ padding: '8px 18px', fontSize: 12, flexShrink: 0 }}
         >
           <span>Run Live Audit</span>
           <ArrowRight size={13} />

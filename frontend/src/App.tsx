@@ -49,13 +49,7 @@ export default function App() {
       <SidebarDock activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* 3. MAIN CONTENT VIEWPORT */}
-      <div style={{
-        marginLeft: 96,
-        width: 'calc(100% - 116px)',
-        padding: '0 24px 80px 10px',
-        position: 'relative',
-        zIndex: 1
-      }}>
+      <div className="app-main-viewport">
         {/* TOP STATUS, CLUSTER & AUDIT ACTION BAR */}
         <Navbar
           activeTab={activeTab}
@@ -102,8 +96,6 @@ export default function App() {
           {activeTab === 'boavizta' && <BoaviztaPage />}
 
           {activeTab === 'governance' && <GovernancePage />}
-
-          {activeTab === 'gainshare' && <GainSharePage />}
 
           {activeTab === 'sandbox' && <SandboxPage />}
 

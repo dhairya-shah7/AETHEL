@@ -17,6 +17,14 @@ interface GainSharePageProps {
   onRestart?: () => void;
 }
 
+const CLOUD_HOURLY_RATES: Record<string, number> = {
+  'g4dn.xlarge': 0.526,
+  'p4d.24xlarge': 32.77,
+  'c5.4xlarge': 0.680,
+  'a2-highgpu-1g': 3.67,
+  'Standard_D4s_v5': 0.192,
+};
+
 export const GainSharePage: React.FC<GainSharePageProps> = ({
   onNavigatePrev,
   onRestart
@@ -30,41 +38,30 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
   const [commissionRate, setCommissionRate] = useState(0.20);
   const [loading, setLoading] = useState(false);
 
-  const [result, setResult] = useState<GainShareResult>({
-    workload: 'Enterprise AI Model Serving Cluster',
-    cloud: 'AWS',
-    instance: 'g4dn.xlarge',
-    hourly_rate_usd: 0.526,
-    baseline_spend_monthly_usd: 9468.0,
-    optimized_spend_monthly_usd: 6059.52,
-    gross_savings_monthly_usd: 3408.48,
-    annualized_gross_savings_usd: 40901.76,
-    verde_gainshare_fee_20pct_usd: 681.7,
-    net_client_savings_monthly_usd: 2726.78,
-    client_roi_pct: 400.0,
-    instances_count: 25,
-    reduction_pct: 36,
-    commission_rate_pct: 20,
-    invoice_summary: `============================================================\n           AETHEL GREENOPS BILLING SUMMARY\n============================================================\nWorkload:               Enterprise AI Model Serving Cluster (AWS - g4dn.xlarge)\nMonthly Baseline Spend: $9,468.00\nMonthly Optimized Spend:$6,059.52\n------------------------------------------------------------\nTotal Gross Savings:    $3,408.48 / month\nAnnualized Run-Rate:    $40,901.76 / year\nAETHEL 20% Success Fee: $681.70\nNET CLIENT CASH SAVED:  $2,726.78 / month\nClient Immediate ROI:   400.0%\n============================================================`
-  });
+  // Dynamic live calculations that react instantly to sliders
+  const hourlyRate = CLOUD_HOURLY_RATES[instanceType] || 0.526;
+  const totalHours = baselineHours * nodesCount;
+  const baselineSpendMonthly = Number((totalHours * hourlyRate).toFixed(2));
+  const grossSavingsMonthly = Number((baselineSpendMonthly * (reductionPct / 100.0)).toFixed(2));
+  const optimizedSpendMonthly = Number((baselineSpendMonthly - grossSavingsMonthly).toFixed(2));
+  const annualizedGrossSavings = Number((grossSavingsMonthly * 12).toFixed(2));
+  const aethelFeeMonthly = Number((grossSavingsMonthly * commissionRate).toFixed(2));
+  const netClientSavingsMonthly = Number((grossSavingsMonthly - aethelFeeMonthly).toFixed(2));
+  const netProfitMultiplier = aethelFeeMonthly > 0 ? Number((netClientSavingsMonthly / aethelFeeMonthly).toFixed(1)) : 4.0;
 
-  const handleRecalculate = async () => {
-    setLoading(true);
-    try {
-      const res = await calculateGainShare({
-        workload_name: workloadName,
-        cloud_provider: cloudProvider,
-        instance_type: instanceType,
-        instances_count: nodesCount,
-        baseline_hours_per_month: baselineHours,
-        optimization_reduction_pct: reductionPct,
-        commission_rate: commissionRate
-      });
-      setResult(res);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const invoiceSummary = `============================================================
+           AETHEL GREENOPS BILLING SUMMARY
+============================================================
+Workload:               ${workloadName} (${cloudProvider.toUpperCase()} - ${instanceType})
+Monthly Baseline Spend: $${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+Monthly Optimized Spend:$${optimizedSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+------------------------------------------------------------
+Total Gross Savings:    $${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
+Annualized Run-Rate:    $${annualizedGrossSavings.toLocaleString('en-US', { minimumFractionDigits: 2 })} / year
+AETHEL ${(commissionRate * 100).toFixed(0)}% Success Fee: $${aethelFeeMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+NET CLIENT CASH SAVED:  $${netClientSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
+Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
+============================================================`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 40, maxWidth: 1280, margin: '0 auto', width: '100%' }}>
@@ -82,18 +79,18 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
       </div>
 
       {/* Main Ledger Split */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 24 }}>
+      <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 24 }}>
         {/* Parameters Form */}
-        <div className="liquid-card" style={{ padding: 32 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+        <div className="liquid-card" style={{ padding: 28 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <Calculator size={18} color="#bbf451" />
-            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF' }}>FinOps Simulation Engine</h3>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF' }}>Cloud Setup & Sliders</h3>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div>
               <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)', display: 'block', marginBottom: 6 }}>
-                Workload Identifier
+                Workload Name
               </label>
               <input
                 type="text"
@@ -139,7 +136,7 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
 
               <div>
                 <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)', display: 'block', marginBottom: 6 }}>
-                  Instance Type
+                  Server Type (GPU / CPU)
                 </label>
                 <select
                   value={instanceType}
@@ -167,8 +164,8 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
             {/* Nodes Slider */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'var(--c-sage)', marginBottom: 6 }}>
-                <span>Active Clustered Nodes</span>
-                <span style={{ color: '#bbf451', fontWeight: 700 }}>{nodesCount} Nodes</span>
+                <span>Number of Cloud Servers</span>
+                <span style={{ color: '#bbf451', fontWeight: 800 }}>{nodesCount} Servers</span>
               </div>
               <input
                 type="range"
@@ -185,7 +182,7 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'var(--c-sage)', marginBottom: 6 }}>
                 <span>AETHEL Verified Optimization %</span>
-                <span style={{ color: '#bbf451', fontWeight: 700 }}>{reductionPct}% Cut</span>
+                <span style={{ color: '#bbf451', fontWeight: 800 }}>{reductionPct}% Cut</span>
               </div>
               <input
                 type="range"
@@ -228,64 +225,50 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
                 ))}
               </div>
             </div>
-
-            <button
-              className="neon-pill-btn"
-              onClick={handleRecalculate}
-              disabled={loading}
-              style={{
-                width: '100%',
-                justifyContent: 'center',
-                marginTop: 8
-              }}
-            >
-              <Zap size={16} />
-              <span>{loading ? 'Auditing Financials...' : 'Recalculate FinOps Return'}</span>
-            </button>
           </div>
         </div>
 
         {/* Output Financial Ledger & Invoice */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
           {/* 4 Financial Metric Cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+          <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
             <div className="liquid-card" style={{ padding: 22 }}>
               <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Monthly Baseline Cloud Bill</div>
               <div style={{ fontSize: 26, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
-                ${result.baseline_spend_monthly_usd.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                ${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
               <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                {result.instances_count} × {result.instance} @ ${result.hourly_rate_usd}/hr
+                {nodesCount} servers × {instanceType} @ ${hourlyRate}/hr
               </div>
             </div>
 
             <div className="liquid-card" style={{ padding: 22 }}>
               <div style={{ fontSize: 11, color: '#bbf451' }}>AETHEL Optimized Bill</div>
               <div style={{ fontSize: 26, fontWeight: 800, color: '#bbf451', marginTop: 4 }}>
-                ${result.optimized_spend_monthly_usd.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                ${optimizedSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
               <div style={{ fontSize: 11, color: '#4ade80', marginTop: 4 }}>
-                ↓ {result.reduction_pct}% Compute Hours Saved
+                ↓ {reductionPct}% Bill Cut (Saved ${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })})
               </div>
             </div>
 
             <div className="liquid-card" style={{ padding: 22, border: '1px solid rgba(74, 222, 128, 0.4)' }}>
               <div style={{ fontSize: 11, color: '#4ade80' }}>Net Client Cash Kept</div>
               <div style={{ fontSize: 28, fontWeight: 800, color: '#4ade80', marginTop: 4 }}>
-                ${result.net_client_savings_monthly_usd.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                ${netClientSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
               <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                Annualized: ${(result.net_client_savings_monthly_usd * 12).toLocaleString('en-US', { minimumFractionDigits: 2 })} / yr
+                Annualized: ${(netClientSavingsMonthly * 12).toLocaleString('en-US', { minimumFractionDigits: 2 })} / yr net profit
               </div>
             </div>
 
             <div className="liquid-card" style={{ padding: 22 }}>
-              <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Client Immediate ROI</div>
+              <div style={{ fontSize: 11, color: '#bbf451', fontWeight: 700 }}>Client Net Profit Multiplier</div>
               <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
-                {result.client_roi_pct.toFixed(0)}%
+                {netProfitMultiplier}x Net Return
               </div>
               <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                AETHEL {(result.commission_rate_pct).toFixed(0)}% Fee: ${result.verde_gainshare_fee_20pct_usd.toLocaleString()}
+                You keep ${netProfitMultiplier.toFixed(1)} for every $1 paid to AETHEL
               </div>
             </div>
           </div>
@@ -314,7 +297,7 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
               overflowX: 'auto',
               whiteSpace: 'pre'
             }}>
-              {result.invoice_summary}
+              {invoiceSummary}
             </pre>
           </div>
         </div>
