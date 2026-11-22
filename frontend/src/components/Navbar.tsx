@@ -168,17 +168,16 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
       </div>
 
-      {/* 3. Right: Cluster Selector & Run Live Audit Action */}
+      {/* 3. Right: Cluster Selector */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-        {/* Cluster Selector */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           gap: 6,
           background: 'rgba(2, 13, 14, 0.6)',
-          padding: '6px 12px',
+          padding: '6px 14px',
           borderRadius: 999,
-          border: '1px solid rgba(142, 182, 155, 0.2)'
+          border: '1px solid rgba(142, 182, 155, 0.25)'
         }}>
           <Server size={12} color="#bbf451" />
           <select
@@ -200,16 +199,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             <option value="virginia" style={{ background: '#0B2B26', color: '#FFF' }}>us-east-1 (N. Virginia)</option>
           </select>
         </div>
-
-        {/* Live Audit Action */}
-        <button
-          className="neon-pill-btn"
-          onClick={onTriggerAudit}
-          style={{ padding: '8px 18px', fontSize: 12, flexShrink: 0 }}
-        >
-          <span>Run Live Audit</span>
-          <ArrowRight size={13} />
-        </button>
       </div>
     </header>
   );

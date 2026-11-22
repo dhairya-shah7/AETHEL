@@ -81,35 +81,12 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
           lineHeight: 1.6,
           color: 'var(--c-sage)',
           maxWidth: 680,
-          margin: '0 auto 34px auto'
+          margin: '0 auto 24px auto'
         }}>
           Cut your enterprise cloud bills by 30% to 50% while automatically fulfilling government carbon compliance. AETHEL detects wasted server power, cleans up heavy code, and provides official SEBI green audits with zero upfront cost.
         </p>
 
-        {/* Hero CTA Actions */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-          <button className="neon-pill-btn" onClick={onTriggerAudit}>
-            <Zap size={16} />
-            <span>Start Live Energy Audit</span>
-            <ArrowRight size={16} />
-          </button>
-          <button 
-            className="glass-outline-btn" 
-            onClick={() => setActiveTab('sandbox')}
-          >
-            <Terminal size={15} color="#bbf451" />
-            <span>Launch CI/CD Profiler</span>
-          </button>
-          <button 
-            className="glass-outline-btn" 
-            onClick={() => setActiveTab('governance')}
-          >
-            <ShieldCheck size={15} color="#bbf451" />
-            <span>Generate BRSR Audit</span>
-          </button>
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginTop: 24, fontSize: 12, color: 'var(--c-sage)' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginTop: 12, fontSize: 12, color: 'var(--c-sage)' }}>
           <span>✓ Zero Hardware Required</span>
           <span>✓ CEA India & GSF SCI Compliant</span>
           <span>✓ 15% Gain-Share Risk Free</span>
@@ -300,19 +277,15 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
             <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
               Live Software Power Meter
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', marginBottom: 20 }}>
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
               Measures the exact electricity (Watts & Joules) drawn by your cloud servers and code. No theoretical estimates—pure live telemetry.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#bbf451', fontWeight: 600 }}>
-              <span>Open Power Meter</span> <ArrowRight size={13} />
-            </div>
           </div>
 
           {/* Pillar 2 */}
           <div 
             className="liquid-card" 
-            onClick={() => setActiveTab('gainshare')}
-            style={{ padding: 28, cursor: 'pointer' }}
+            style={{ padding: 28 }}
           >
             <div style={{
               width: 44,
@@ -331,19 +304,15 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
             <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
               Zero-Risk Gain-Share Pricing
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', marginBottom: 20 }}>
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
               Pay ₹0 upfront. We only collect a 20% success fee on the money we actually cut from your AWS, GCP, or Azure invoices.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#bbf451', fontWeight: 600 }}>
-              <span>View Savings Calculator</span> <ArrowRight size={13} />
-            </div>
           </div>
 
           {/* Pillar 3 */}
           <div 
             className="liquid-card" 
-            onClick={() => setActiveTab('governance')}
-            style={{ padding: 28, cursor: 'pointer' }}
+            style={{ padding: 28 }}
           >
             <div style={{
               width: 44,
@@ -362,19 +331,15 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
             <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
               1-Click SEBI Carbon Audit
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', marginBottom: 20 }}>
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
               Generates official government-certified ESG compliance reports required by SEBI and your board with a single click.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#bbf451', fontWeight: 600 }}>
-              <span>Export Carbon Audit</span> <ArrowRight size={13} />
-            </div>
           </div>
 
           {/* Pillar 4 */}
           <div 
             className="liquid-card" 
-            onClick={() => setActiveTab('marketplace')}
-            style={{ padding: 28, cursor: 'pointer' }}
+            style={{ padding: 28 }}
           >
             <div style={{
               width: 44,
@@ -393,12 +358,9 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
             <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
               1-Click Cloud Marketplace
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', marginBottom: 20 }}>
+            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
               Install directly from AWS, Azure, or Google Cloud marketplace with unified billing and zero vendor procurement friction.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: '#bbf451', fontWeight: 600 }}>
-              <span>Explore Marketplace</span> <ArrowRight size={13} />
-            </div>
           </div>
         </div>
       </section>
