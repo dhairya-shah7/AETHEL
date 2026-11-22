@@ -218,8 +218,8 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                     type="button"
                     onClick={() => setCommissionRate(tier.val)}
                     style={{
-                      flex: 1,
-                      minWidth: 120,
+                      flex: '1 1 120px',
+                      minWidth: 0,
                       padding: '10px 14px',
                       borderRadius: 12,
                       border: commissionRate === tier.val ? '1px solid #bbf451' : '1px solid rgba(35, 83, 71, 0.5)',

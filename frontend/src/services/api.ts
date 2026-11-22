@@ -1,7 +1,7 @@
 // API Service for AETHEL GreenOps Frontend
-// Connects to FastAPI backend (http://localhost:8000) with robust client-side fallback
+// Connects to FastAPI backend with environment variable support and robust client-side fallback
 
-const API_BASE = 'http://localhost:8000';
+const API_BASE = ((import.meta as any).env?.VITE_API_URL as string) || (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') ? 'http://localhost:8000' : '');
 
 export interface TelemetryProfile {
   instance_type: string;

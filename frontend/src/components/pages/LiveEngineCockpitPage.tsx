@@ -346,14 +346,14 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                 borderRadius: 6,
                 letterSpacing: '0.05em'
               }}>
-                PILLAR 2: AUTHENTICATED TRACE REPLAY
+                TEST 2: REAL TRAFFIC REPLAY
               </span>
               <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: '#DAF1DE' }}>
-                Datacenter Telemetry Trace Replayer (Cluster Scale)
+                Real Server Traffic Replayer
               </h2>
             </div>
             <p style={{ fontSize: 12, color: 'var(--c-sage)', margin: 0 }}>
-              Replaying authenticated public cluster traces: <strong>{currentDatasetMeta.name}</strong> ({currentDatasetMeta.citation})
+              Replaying real cluster usage from <strong>{currentDatasetMeta.name}</strong>.
             </p>
           </div>
 
@@ -499,7 +499,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               </div>
 
               {/* Node Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(62px, 1fr))', gap: 8 }}>
                 {traceFrame.unmanaged_cluster.nodes.map((n) => {
                   const isThrottled = n.status.includes('THROTTLED');
                   return (
@@ -542,7 +542,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
               </div>
 
               {/* Node Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(62px, 1fr))', gap: 8 }}>
                 {traceFrame.aethel_cluster.nodes.map((n) => {
                   const isQuant = n.precision === 'INT8';
                   return (
@@ -597,7 +597,9 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
         marginTop: 28,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 12
       }}>
         {onNavigatePrev && (
           <button

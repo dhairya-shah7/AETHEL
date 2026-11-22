@@ -10,7 +10,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({ surgeActive = 
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.65;
+      videoRef.current.playbackRate = 1.0;
     }
   }, []);
 
@@ -62,10 +62,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({ surgeActive = 
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(187, 244, 81, ${alpha})`;
-        ctx.shadowColor = '#bbf451';
-        ctx.shadowBlur = 6;
         ctx.fill();
-        ctx.shadowBlur = 0;
       });
 
       if (surgeActive) {
@@ -109,8 +106,9 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({ surgeActive = 
           width: '100vw',
           height: '100vh',
           objectFit: 'cover',
-          filter: 'brightness(1.10) contrast(1.05) saturate(1.15)',
-          display: 'block'
+          display: 'block',
+          transform: 'translateZ(0)',
+          willChange: 'transform'
         }}
       >
         <source src="/videos/datacenter_bright_slow.mp4" type="video/mp4" />
@@ -123,7 +121,7 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({ surgeActive = 
         position: 'absolute',
         inset: 0,
         background: 'radial-gradient(ellipse at 50% 50%, rgba(2, 13, 14, 0.20) 0%, rgba(5, 31, 32, 0.48) 70%, rgba(2, 13, 14, 0.72) 100%)',
-        backdropFilter: 'blur(0.5px)'
+        transform: 'translateZ(0)'
       }} />
 
       {/* 3. Luminous Particle Canvas */}
