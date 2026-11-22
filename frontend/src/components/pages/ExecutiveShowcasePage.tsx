@@ -17,7 +17,11 @@ import {
 } from 'lucide-react';
 import { fetchTraceDatasets, DatasetMetadata } from '../../services/api';
 
-export const ExecutiveShowcasePage: React.FC = () => {
+interface ExecutiveShowcasePageProps {
+  onNavigateNext?: () => void;
+}
+
+export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ onNavigateNext }) => {
   const [datasets, setDatasets] = useState<Record<string, DatasetMetadata>>({});
   const [surgeIntensity, setSurgeIntensity] = useState<number>(65); // 0 to 100%
 
@@ -440,6 +444,33 @@ export const ExecutiveShowcasePage: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* 5. NEXT STEP IN APP FLOW */}
+      {onNavigateNext && (
+        <div style={{
+          marginTop: 28,
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center'
+        }}>
+          <button
+            onClick={onNavigateNext}
+            className="neon-pill-btn"
+            style={{
+              padding: '14px 28px',
+              fontSize: 14,
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              boxShadow: '0 0 25px rgba(187, 244, 81, 0.35)'
+            }}
+          >
+            <span>Step 2: Test Live Engine on Your Laptop</span>
+            <ArrowRight size={18} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

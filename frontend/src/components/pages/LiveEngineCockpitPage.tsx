@@ -13,7 +13,8 @@ import {
   Flame, 
   TrendingDown, 
   ShieldCheck,
-  Server
+  Server,
+  ArrowRight
 } from 'lucide-react';
 import { 
   executeLiveHardwareBenchmark, 
@@ -24,7 +25,15 @@ import {
   DatasetMetadata 
 } from '../../services/api';
 
-export const LiveEngineCockpitPage: React.FC = () => {
+interface LiveEngineCockpitPageProps {
+  onNavigatePrev?: () => void;
+  onNavigateNext?: () => void;
+}
+
+export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
+  onNavigatePrev,
+  onNavigateNext
+}) => {
   // ----------------- SECTION A: LIVE PYTORCH BENCHMARK STATE -----------------
   const [benchmarkLoading, setBenchmarkLoading] = useState<boolean>(false);
   const [benchmarkResult, setBenchmarkResult] = useState<BenchmarkResult | null>(null);
@@ -580,6 +589,52 @@ export const LiveEngineCockpitPage: React.FC = () => {
               {traceFrame.alerts[0].detail}
             </div>
           </div>
+        )}
+      </div>
+
+      {/* STEP FLOW NAVIGATION */}
+      <div style={{
+        marginTop: 28,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        {onNavigatePrev && (
+          <button
+            onClick={onNavigatePrev}
+            style={{
+              padding: '12px 22px',
+              fontSize: 13,
+              fontWeight: 700,
+              background: 'rgba(5, 31, 32, 0.85)',
+              border: '1px solid rgba(142, 182, 155, 0.3)',
+              borderRadius: 999,
+              color: '#DAF1DE',
+              cursor: 'pointer'
+            }}
+          >
+            ← Step 1: Back to Showcase
+          </button>
+        )}
+
+        {onNavigateNext && (
+          <button
+            onClick={onNavigateNext}
+            className="neon-pill-btn"
+            style={{
+              padding: '14px 28px',
+              fontSize: 14,
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              boxShadow: '0 0 25px rgba(187, 244, 81, 0.35)',
+              marginLeft: 'auto'
+            }}
+          >
+            <span>Step 3: Calculate Your Cloud Savings</span>
+            <ArrowRight size={18} />
+          </button>
         )}
       </div>
     </div>

@@ -68,9 +68,23 @@ export default function App() {
 
         {/* DYNAMIC ACTIVE MODULE VIEWPORT (Single-Page App Flow) */}
         <main style={{ maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
-          {activeTab === 'showcase' && <ExecutiveShowcasePage />}
+          {activeTab === 'showcase' && (
+            <ExecutiveShowcasePage onNavigateNext={() => setActiveTab('cockpit')} />
+          )}
 
-          {activeTab === 'cockpit' && <LiveEngineCockpitPage />}
+          {activeTab === 'cockpit' && (
+            <LiveEngineCockpitPage
+              onNavigatePrev={() => setActiveTab('showcase')}
+              onNavigateNext={() => setActiveTab('gainshare')}
+            />
+          )}
+
+          {activeTab === 'gainshare' && (
+            <GainSharePage
+              onNavigatePrev={() => setActiveTab('cockpit')}
+              onRestart={() => setActiveTab('showcase')}
+            />
+          )}
 
           {activeTab === 'overview' && (
             <OverviewPage

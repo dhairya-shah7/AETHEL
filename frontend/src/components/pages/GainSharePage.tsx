@@ -12,7 +12,15 @@ import {
 } from 'lucide-react';
 import { calculateGainShare, GainShareResult } from '../../services/api';
 
-export const GainSharePage: React.FC = () => {
+interface GainSharePageProps {
+  onNavigatePrev?: () => void;
+  onRestart?: () => void;
+}
+
+export const GainSharePage: React.FC<GainSharePageProps> = ({
+  onNavigatePrev,
+  onRestart
+}) => {
   const [workloadName, setWorkloadName] = useState('Enterprise AI Model Serving Cluster');
   const [cloudProvider, setCloudProvider] = useState('aws');
   const [instanceType, setInstanceType] = useState('g4dn.xlarge');
@@ -63,13 +71,13 @@ export const GainSharePage: React.FC = () => {
       {/* Header */}
       <div>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#bbf451' }}>
-          PILLAR 2: ZERO-RISK PRICING
+          STEP 3: BUSINESS ROI & FINOPS
         </span>
         <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
           Zero-Risk Cloud Savings Calculator
         </h2>
         <p style={{ fontSize: 14, color: 'var(--c-sage)', marginTop: 8 }}>
-          Pay ₹0 upfront. You only pay a 20% success fee on the real money we cut from your AWS, Azure, or Google Cloud bills. If we don't save you money, you owe us nothing.
+          Pay $0 upfront. Select your cloud provider and number of GPUs or servers to see your exact monthly cash savings. Zero risk: we only take a 20% cut of verified savings. If we don't save you money, you owe us nothing.
         </p>
       </div>
 
@@ -310,6 +318,52 @@ export const GainSharePage: React.FC = () => {
             </pre>
           </div>
         </div>
+      </div>
+
+      {/* STEP FLOW NAVIGATION */}
+      <div style={{
+        marginTop: 10,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        {onNavigatePrev && (
+          <button
+            onClick={onNavigatePrev}
+            style={{
+              padding: '12px 22px',
+              fontSize: 13,
+              fontWeight: 700,
+              background: 'rgba(5, 31, 32, 0.85)',
+              border: '1px solid rgba(142, 182, 155, 0.3)',
+              borderRadius: 999,
+              color: '#DAF1DE',
+              cursor: 'pointer'
+            }}
+          >
+            ← Step 2: Back to Live Engine
+          </button>
+        )}
+
+        {onRestart && (
+          <button
+            onClick={onRestart}
+            className="neon-pill-btn"
+            style={{
+              padding: '14px 28px',
+              fontSize: 14,
+              fontWeight: 800,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              boxShadow: '0 0 25px rgba(187, 244, 81, 0.35)',
+              marginLeft: 'auto'
+            }}
+          >
+            <span>Restart Tour (Back to Step 1)</span>
+            <ArrowRight size={18} />
+          </button>
+        )}
       </div>
     </div>
   );

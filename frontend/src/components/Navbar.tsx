@@ -36,26 +36,27 @@ interface NavbarProps {
 }
 
 const tabMeta: Record<TabType, { title: string; subtitle: string; icon: React.ReactNode }> = {
-  showcase: { title: 'Executive Showcase', subtitle: 'Ground-Truth Comparative Impact (Without vs. With AETHEL)', icon: <Sparkles size={16} /> },
-  cockpit: { title: 'Silicon Engine & Datacenter Traces', subtitle: 'Host PyTorch INT8 Benchmark & Alibaba PAI Trace Replay', icon: <Cpu size={16} /> },
-  overview: { title: 'Executive Cockpit', subtitle: 'Platform Overview & Health', icon: <Layers size={16} /> },
+  showcase: { title: '1. Executive Showcase', subtitle: 'What Happens to AI Servers: Without vs. With AETHEL', icon: <Sparkles size={16} /> },
+  cockpit: { title: '2. Live Silicon Engine', subtitle: 'Live PyTorch Benchmark on Your Machine & Real Alibaba Cluster Replay', icon: <Cpu size={16} /> },
+  gainshare: { title: '3. Cloud Savings Calculator', subtitle: 'Calculate Exact Cash & Carbon Saved on AWS, Azure & GCP', icon: <Zap size={16} /> },
+  overview: { title: 'Full Diagnostics (Advanced)', subtitle: 'Full Cluster Telemetry, ThermalOps & SEBI Reports', icon: <Layers size={16} /> },
   thermal: { title: 'ThermalOps Co-Scheduler', subtitle: 'Silicon Thermal Equilibrium & Resilience Bunker', icon: <Flame size={16} /> },
   telemetry: { title: 'Kernel Telemetry', subtitle: 'RAPL & NVML Power Oscilloscope', icon: <Activity size={16} /> },
   boavizta: { title: 'Boavizta SCI Engine', subtitle: 'Hardware Embodied & Operational Carbon', icon: <Cpu size={16} /> },
   governance: { title: 'SEBI BRSR Principle 6', subtitle: 'Statutory ESG Regulatory Compliance', icon: <ShieldCheck size={16} /> },
-  gainshare: { title: 'Gain-Share FinOps', subtitle: '15-20% Risk-Free Cloud Savings Ledger', icon: <Zap size={16} /> },
   sandbox: { title: 'CI/CD Developer Sandbox', subtitle: 'GitHub Actions & AST Energy Linter', icon: <Terminal size={16} /> },
   marketplace: { title: 'Cloud Marketplace', subtitle: 'AWS, GCP, Azure & Helm Deployments', icon: <Store size={16} /> },
 };
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
+  setActiveTab,
   selectedCluster,
   setSelectedCluster,
   onTriggerAudit,
   backendOnline
 }) => {
-  const current = tabMeta[activeTab] || tabMeta.overview;
+  const current = tabMeta[activeTab] || tabMeta.showcase;
 
   return (
     <header style={{
@@ -95,6 +96,80 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span>•</span>
           <span>{current.subtitle}</span>
         </span>
+      </div>
+
+      {/* 3-STEP ESSENTIAL APP FLOW SWITCHER */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        background: 'rgba(2, 13, 14, 0.65)',
+        padding: '4px 6px',
+        borderRadius: 999,
+        border: '1px solid rgba(142, 182, 155, 0.25)'
+      }}>
+        <button
+          onClick={() => setActiveTab('showcase')}
+          style={{
+            background: activeTab === 'showcase' ? '#bbf451' : 'transparent',
+            color: activeTab === 'showcase' ? '#051f20' : '#DAF1DE',
+            fontWeight: activeTab === 'showcase' ? 800 : 600,
+            fontSize: 12,
+            padding: '6px 14px',
+            borderRadius: 999,
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6
+          }}
+        >
+          <Sparkles size={13} />
+          <span>1. Showcase</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('cockpit')}
+          style={{
+            background: activeTab === 'cockpit' ? '#bbf451' : 'transparent',
+            color: activeTab === 'cockpit' ? '#051f20' : '#DAF1DE',
+            fontWeight: activeTab === 'cockpit' ? 800 : 600,
+            fontSize: 12,
+            padding: '6px 14px',
+            borderRadius: 999,
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6
+          }}
+        >
+          <Cpu size={13} />
+          <span>2. Live Engine</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('gainshare')}
+          style={{
+            background: activeTab === 'gainshare' ? '#bbf451' : 'transparent',
+            color: activeTab === 'gainshare' ? '#051f20' : '#DAF1DE',
+            fontWeight: activeTab === 'gainshare' ? 800 : 600,
+            fontSize: 12,
+            padding: '6px 14px',
+            borderRadius: 999,
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6
+          }}
+        >
+          <Zap size={13} />
+          <span>3. Savings</span>
+        </button>
       </div>
 
       {/* Cluster Selector, Backend Status & Quick Audit Action */}
