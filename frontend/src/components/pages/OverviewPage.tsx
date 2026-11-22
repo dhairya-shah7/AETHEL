@@ -55,12 +55,12 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
 
         {/* Headline */}
         <h1 style={{
-          fontSize: 64,
+          fontSize: 'clamp(32px, 7vw, 64px)',
           lineHeight: 1.1,
           fontWeight: 800,
-          letterSpacing: -1.8,
+          letterSpacing: -1.2,
           color: '#FFFFFF',
-          marginBottom: 20
+          marginBottom: 16
         }}>
           Intelligence that{' '}
           <span style={{ 
@@ -77,80 +77,73 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
         </h1>
 
         <p style={{
-          fontSize: 17,
-          lineHeight: 1.6,
+          fontSize: 15,
+          lineHeight: 1.5,
           color: 'var(--c-sage)',
-          maxWidth: 680,
-          margin: '0 auto 24px auto'
+          maxWidth: 620,
+          margin: '0 auto 20px auto'
         }}>
-          Cut your enterprise cloud bills by 30% to 50% while automatically fulfilling government carbon compliance. AETHEL detects wasted server power, cleans up heavy code, and provides official SEBI green audits with zero upfront cost.
+          Cut your cloud bills by 30% to 50% while automatically fulfilling carbon compliance. AETHEL detects wasted server power, frees memory, and protects performance with zero upfront cost.
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 32, marginTop: 12, fontSize: 12, color: 'var(--c-sage)' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, flexWrap: 'wrap', marginTop: 12, fontSize: 12, color: 'var(--c-sage)' }}>
           <span>✓ Zero Hardware Required</span>
-          <span>✓ CEA India & GSF SCI Compliant</span>
-          <span>✓ 15% Gain-Share Risk Free</span>
+          <span>✓ Real Silicon Optimization</span>
+          <span>✓ Zero Upfront Risk</span>
         </div>
       </section>
 
       {/* 2. EXECUTIVE MASTER KPIS */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(4, 1fr)',
-        gap: 20,
-        maxWidth: 1280,
-        margin: '0 auto',
-        width: '100%'
-      }}>
-        <div className="liquid-card" style={{ padding: 24 }}>
+      <section className="grid-4col" style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+        <div className="liquid-card" style={{ padding: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)' }}>Cloud Dollars Saved</span>
             <div style={{ padding: 6, borderRadius: 8, background: 'rgba(187, 244, 81, 0.15)' }}>
               <Zap size={16} color="#bbf451" />
             </div>
           </div>
-          <div style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF' }}>$40,901</div>
-          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 8, display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF' }}>$40,901</div>
+          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
             <span>↑ 36% Net Efficiency</span>
-            <span style={{ color: 'var(--c-sage)' }}>/ yr run-rate</span>
+            <span style={{ color: 'var(--c-sage)' }}>/ yr</span>
           </div>
         </div>
 
-        <div className="liquid-card" style={{ padding: 24 }}>
+        <div className="liquid-card" style={{ padding: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)' }}>Clean Energy Conserved</span>
             <div style={{ padding: 6, borderRadius: 8, background: 'rgba(74, 222, 128, 0.15)' }}>
               <Leaf size={16} color="#4ade80" />
             </div>
           </div>
-          <div style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF' }}>310 MWh</div>
-          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 8 }}>
-            <span>Equivalent to 1.116 GJ avoided</span>
+          <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF' }}>310 MWh</div>
+          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 6 }}>
+            <span>1.116 GJ avoided</span>
           </div>
         </div>
 
-        <div className="liquid-card" style={{ padding: 24 }}>
+        <div className="liquid-card" style={{ padding: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)' }}>Avoided Carbon Footprint</span>
             <div style={{ padding: 6, borderRadius: 8, background: 'rgba(187, 244, 81, 0.15)' }}>
               <TrendingDown size={16} color="#bbf451" />
             </div>
           </div>
-          <div style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF' }}>221.9 <span style={{ fontSize: 16, color: '#bbf451' }}>tCO2e</span></div>
-          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 8 }}>
-            <span>-36% Scope 2 Grid Emissions</span>
+          <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF' }}>221.9 <span style={{ fontSize: 14, color: '#bbf451' }}>tCO2e</span></div>
+          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 6 }}>
+            <span>-36% Grid Emissions</span>
           </div>
         </div>
 
-        <div className="liquid-card" style={{ padding: 24 }}>
+        <div className="liquid-card" style={{ padding: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)' }}>Datacenter Water Saved</span>
             <div style={{ padding: 6, borderRadius: 8, background: 'rgba(218, 241, 222, 0.15)' }}>
               <ShieldCheck size={16} color="#DAF1DE" />
             </div>
           </div>
-          <div style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF' }}>558,000 <span style={{ fontSize: 16 }}>Liters</span></div>
-          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 8 }}>
+          <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF' }}>558,000 <span style={{ fontSize: 14 }}>Liters</span></div>
+          <div style={{ fontSize: 12, color: '#4ade80', marginTop: 6 }}>
             <span>WUE 1.8 L/kWh Saved</span>
           </div>
         </div>
@@ -158,82 +151,82 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
 
       {/* 3. HOW AETHEL WORKS IN 3 SIMPLE STEPS */}
       <section style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
-        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#bbf451' }}>
             HOW IT WORKS
           </span>
-          <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', marginTop: 6 }}>
-            Simple, Human-Friendly Cloud Optimization
+          <h2 style={{ fontSize: 'clamp(22px, 5vw, 32px)', fontWeight: 800, color: '#FFFFFF', marginTop: 6 }}>
+            Simple 3-Step Optimization
           </h2>
-          <p style={{ fontSize: 14, color: 'var(--c-sage)', marginTop: 8 }}>
-            No complex setup. Zero downtime. 100% auditable cloud savings.
+          <p style={{ fontSize: 13, color: 'var(--c-sage)', marginTop: 6 }}>
+            No complex setup. Zero downtime. Guaranteed savings.
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
-          <div className="liquid-card" style={{ padding: 28 }}>
+        <div className="grid-3col">
+          <div className="liquid-card" style={{ padding: 20 }}>
             <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
+              width: 32,
+              height: 32,
+              borderRadius: 8,
               background: 'rgba(187, 244, 81, 0.15)',
               color: '#bbf451',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: 800,
-              fontSize: 16,
-              marginBottom: 16
+              fontSize: 14,
+              marginBottom: 12
             }}>1</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              1. Plug In with 1 Line
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              1. Plug In
             </h4>
-            <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--c-sage)' }}>
-              Add AETHEL to your cloud (AWS/GCP/Azure) or GitHub in 2 minutes. Requires zero hardware and never interrupts running production workloads.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Connect AETHEL to AWS, GCP, or Azure in 2 minutes. Requires zero hardware or downtime.
             </p>
           </div>
 
-          <div className="liquid-card" style={{ padding: 28 }}>
+          <div className="liquid-card" style={{ padding: 20 }}>
             <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
+              width: 32,
+              height: 32,
+              borderRadius: 8,
               background: 'rgba(74, 222, 128, 0.15)',
               color: '#4ade80',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: 800,
-              fontSize: 16,
-              marginBottom: 16
+              fontSize: 14,
+              marginBottom: 12
             }}>2</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              2. AI Trims Compute Waste
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              2. Cut Waste
             </h4>
-            <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--c-sage)' }}>
-              Our engine identifies idle servers, unoptimized database queries, and memory leaks, automatically scaling down waste in real time.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              AI automatically detects idle instances, memory bloat, and thermal throttling in real time.
             </p>
           </div>
 
-          <div className="liquid-card" style={{ padding: 28 }}>
+          <div className="liquid-card" style={{ padding: 20 }}>
             <div style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
+              width: 32,
+              height: 32,
+              borderRadius: 8,
               background: 'rgba(187, 244, 81, 0.15)',
               color: '#bbf451',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontWeight: 800,
-              fontSize: 16,
-              marginBottom: 16
+              fontSize: 14,
+              marginBottom: 12
             }}>3</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              3. Save Cash & Comply
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              3. Save 30-50%
             </h4>
-            <p style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--c-sage)' }}>
-              Watch your monthly cloud invoice drop by 30–50%. Export certified government SEBI green reports for your board with one click.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Watch monthly bills drop immediately. Pay nothing if we don't save you money.
             </p>
           </div>
         </div>
@@ -241,139 +234,130 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
 
       {/* 4. THE 4 PILLARS OF AETHEL ARCHITECTURE */}
       <section style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
-        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+        <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#bbf451' }}>
-            COMPLETE GREENOPS INFRASTRUCTURE
+            CORE CAPABILITIES
           </span>
-          <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', marginTop: 6 }}>
-            The 4-Pillar Autonomous Engine
+          <h2 style={{ fontSize: 'clamp(22px, 5vw, 32px)', fontWeight: 800, color: '#FFFFFF', marginTop: 6 }}>
+            The 4 Core Pillars
           </h2>
-          <p style={{ fontSize: 14, color: 'var(--c-sage)', marginTop: 8 }}>
-            From microsecond kernel power registers to board-level SEBI ESG filings and gain-share invoicing.
-          </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
+        <div className="grid-4col">
           {/* Pillar 1 */}
           <div 
             className="liquid-card" 
-            onClick={() => setActiveTab('telemetry')}
-            style={{ padding: 28, cursor: 'pointer' }}
+            onClick={() => setActiveTab('cockpit')}
+            style={{ padding: 20, cursor: 'pointer' }}
           >
             <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: 14,
+              width: 38,
+              height: 38,
+              borderRadius: 10,
               background: 'rgba(35, 83, 71, 0.4)',
               border: '1px solid rgba(187, 244, 81, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 16
+              marginBottom: 12
             }}>
-              <Terminal size={20} color="#bbf451" />
+              <Terminal size={18} color="#bbf451" />
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#bbf451', marginBottom: 4 }}>PILLAR 1</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              Live Software Power Meter
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#bbf451', marginBottom: 2 }}>PILLAR 1</div>
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              Live Power Meter
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
-              Measures the exact electricity (Watts & Joules) drawn by your cloud servers and code. No theoretical estimates—pure live telemetry.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Measures exact electricity (Watts & Joules) drawn by cloud servers with zero fake mocks.
             </p>
           </div>
 
           {/* Pillar 2 */}
           <div 
             className="liquid-card" 
-            style={{ padding: 28 }}
+            onClick={() => setActiveTab('gainshare')}
+            style={{ padding: 20, cursor: 'pointer' }}
           >
             <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: 14,
+              width: 38,
+              height: 38,
+              borderRadius: 10,
               background: 'rgba(35, 83, 71, 0.4)',
               border: '1px solid rgba(187, 244, 81, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 16
+              marginBottom: 12
             }}>
-              <Zap size={20} color="#bbf451" />
+              <Zap size={18} color="#bbf451" />
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#bbf451', marginBottom: 4 }}>PILLAR 2</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              Zero-Risk Gain-Share Pricing
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#bbf451', marginBottom: 2 }}>PILLAR 2</div>
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              Zero-Risk Savings
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
-              Pay ₹0 upfront. We only collect a 20% success fee on the money we actually cut from your AWS, GCP, or Azure invoices.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Pay $0 upfront. We only take a 20% cut of verified cash savings on your cloud bill.
             </p>
           </div>
 
           {/* Pillar 3 */}
           <div 
             className="liquid-card" 
-            style={{ padding: 28 }}
+            style={{ padding: 20 }}
           >
             <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: 14,
+              width: 38,
+              height: 38,
+              borderRadius: 10,
               background: 'rgba(35, 83, 71, 0.4)',
               border: '1px solid rgba(187, 244, 81, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 16
+              marginBottom: 12
             }}>
-              <ShieldCheck size={20} color="#bbf451" />
+              <ShieldCheck size={18} color="#bbf451" />
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#bbf451', marginBottom: 4 }}>PILLAR 3</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              1-Click SEBI Carbon Audit
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#bbf451', marginBottom: 2 }}>PILLAR 3</div>
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              1-Click Carbon Audit
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
-              Generates official government-certified ESG compliance reports required by SEBI and your board with a single click.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Generates official carbon and ESG reports for compliance and leadership review.
             </p>
           </div>
 
           {/* Pillar 4 */}
           <div 
             className="liquid-card" 
-            style={{ padding: 28 }}
+            style={{ padding: 20 }}
           >
             <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: 14,
+              width: 38,
+              height: 38,
+              borderRadius: 10,
               background: 'rgba(35, 83, 71, 0.4)',
               border: '1px solid rgba(187, 244, 81, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: 16
+              marginBottom: 12
             }}>
-              <Cloud size={20} color="#bbf451" />
+              <Cloud size={18} color="#bbf451" />
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#bbf451', marginBottom: 4 }}>PILLAR 4</div>
-            <h4 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
-              1-Click Cloud Marketplace
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#bbf451', marginBottom: 2 }}>PILLAR 4</div>
+            <h4 style={{ fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              Cloud Marketplace
             </h4>
-            <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--c-sage)', margin: 0 }}>
-              Install directly from AWS, Azure, or Google Cloud marketplace with unified billing and zero vendor procurement friction.
+            <p style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--c-sage)', margin: 0 }}>
+              Deploy in seconds via AWS, Azure, or GCP marketplace with unified billing.
             </p>
           </div>
         </div>
       </section>
 
       {/* 5. LIVE REGIONAL CLUSTERS & RECENT EVENTS */}
-      <section style={{
-        display: 'grid',
-        gridTemplateColumns: '1.2fr 0.8fr',
-        gap: 24,
-        maxWidth: 1280,
-        margin: '0 auto',
-        width: '100%'
-      }}>
+      <section className="grid-split" style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
         {/* Active Node Telemetry */}
         <div className="liquid-card" style={{ padding: 32 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>

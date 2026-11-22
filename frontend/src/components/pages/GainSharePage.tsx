@@ -64,13 +64,13 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
 ============================================================`;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 40, maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, maxWidth: 1280, margin: '0 auto', width: '100%', minWidth: 0, overflowX: 'hidden' }}>
       {/* Header */}
       <div>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: '#bbf451' }}>
           STEP 3: SAVINGS CALCULATOR
         </span>
-        <h2 style={{ fontSize: 32, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
+        <h2 style={{ fontSize: 'clamp(24px, 5vw, 32px)', fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
           Cloud Bill Savings Calculator
         </h2>
         <p style={{ fontSize: 14, color: 'var(--c-sage)', marginTop: 8 }}>
@@ -79,9 +79,9 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
       </div>
 
       {/* Main Ledger Split */}
-      <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: 24 }}>
+      <div className="grid-split">
         {/* Parameters Form */}
-        <div className="liquid-card" style={{ padding: 28 }}>
+        <div className="liquid-card" style={{ padding: 22, minWidth: 0, overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <Calculator size={18} color="#bbf451" />
             <h3 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF' }}>Cloud Setup & Sliders</h3>
@@ -98,6 +98,8 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                 onChange={(e) => setWorkloadName(e.target.value)}
                 style={{
                   width: '100%',
+                  maxWidth: '100%',
+                  boxSizing: 'border-box',
                   padding: '10px 14px',
                   borderRadius: 12,
                   background: 'rgba(2, 13, 14, 0.7)',
@@ -109,8 +111,8 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-              <div>
+            <div className="input-grid-2col">
+              <div style={{ minWidth: 0 }}>
                 <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)', display: 'block', marginBottom: 6 }}>
                   Cloud Provider
                 </label>
@@ -119,7 +121,10 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                   onChange={(e) => setCloudProvider(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '10px 14px',
+                    maxWidth: '100%',
+                    minWidth: 0,
+                    boxSizing: 'border-box',
+                    padding: '10px 12px',
                     borderRadius: 12,
                     background: 'rgba(2, 13, 14, 0.7)',
                     border: '1px solid rgba(35, 83, 71, 0.6)',
@@ -134,7 +139,7 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                 </select>
               </div>
 
-              <div>
+              <div style={{ minWidth: 0 }}>
                 <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)', display: 'block', marginBottom: 6 }}>
                   Server Type (GPU / CPU)
                 </label>
@@ -143,7 +148,10 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                   onChange={(e) => setInstanceType(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '10px 14px',
+                    maxWidth: '100%',
+                    minWidth: 0,
+                    boxSizing: 'border-box',
+                    padding: '10px 12px',
                     borderRadius: 12,
                     background: 'rgba(2, 13, 14, 0.7)',
                     border: '1px solid rgba(35, 83, 71, 0.6)',
@@ -200,7 +208,7 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
               <label style={{ fontSize: 12, fontWeight: 600, color: 'var(--c-sage)', display: 'block', marginBottom: 8 }}>
                 Contracted Performance Fee Tier
               </label>
-              <div style={{ display: 'flex', gap: 12 }}>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 {[
                   { label: 'Standard 20%', val: 0.20 },
                   { label: 'Enterprise 15%', val: 0.15 }
@@ -211,6 +219,7 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
                     onClick={() => setCommissionRate(tier.val)}
                     style={{
                       flex: 1,
+                      minWidth: 120,
                       padding: '10px 14px',
                       borderRadius: 12,
                       border: commissionRate === tier.val ? '1px solid #bbf451' : '1px solid rgba(35, 83, 71, 0.5)',
@@ -229,56 +238,56 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
         </div>
 
         {/* Output Financial Ledger & Invoice */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20, minWidth: 0 }}>
           {/* 4 Financial Metric Cards */}
-          <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
-            <div className="liquid-card" style={{ padding: 22 }}>
+          <div className="grid-2col">
+            <div className="liquid-card" style={{ padding: 18, minWidth: 0, overflow: 'hidden' }}>
               <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Monthly Baseline Cloud Bill</div>
-              <div style={{ fontSize: 26, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
+              <div style={{ fontSize: 'clamp(20px, 4vw, 24px)', fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
                 ${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
-              <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                {nodesCount} servers × {instanceType} @ ${hourlyRate}/hr
+              <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {nodesCount} servers × {instanceType}
               </div>
             </div>
 
-            <div className="liquid-card" style={{ padding: 22 }}>
+            <div className="liquid-card" style={{ padding: 18, minWidth: 0, overflow: 'hidden' }}>
               <div style={{ fontSize: 11, color: '#bbf451' }}>AETHEL Optimized Bill</div>
-              <div style={{ fontSize: 26, fontWeight: 800, color: '#bbf451', marginTop: 4 }}>
+              <div style={{ fontSize: 'clamp(20px, 4vw, 24px)', fontWeight: 800, color: '#bbf451', marginTop: 4 }}>
                 ${optimizedSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
               <div style={{ fontSize: 11, color: '#4ade80', marginTop: 4 }}>
-                ↓ {reductionPct}% Bill Cut (Saved ${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })})
+                ↓ {reductionPct}% Cut (Saved ${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })})
               </div>
             </div>
 
-            <div className="liquid-card" style={{ padding: 22, border: '1px solid rgba(74, 222, 128, 0.4)' }}>
+            <div className="liquid-card" style={{ padding: 18, border: '1px solid rgba(74, 222, 128, 0.4)', minWidth: 0, overflow: 'hidden' }}>
               <div style={{ fontSize: 11, color: '#4ade80' }}>Net Client Cash Kept</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: '#4ade80', marginTop: 4 }}>
+              <div style={{ fontSize: 'clamp(22px, 4.5vw, 26px)', fontWeight: 800, color: '#4ade80', marginTop: 4 }}>
                 ${netClientSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
               <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                Annualized: ${(netClientSavingsMonthly * 12).toLocaleString('en-US', { minimumFractionDigits: 2 })} / yr net profit
+                Annualized: ${(netClientSavingsMonthly * 12).toLocaleString('en-US', { minimumFractionDigits: 2 })} / yr
               </div>
             </div>
 
-            <div className="liquid-card" style={{ padding: 22 }}>
+            <div className="liquid-card" style={{ padding: 18, minWidth: 0, overflow: 'hidden' }}>
               <div style={{ fontSize: 11, color: '#bbf451', fontWeight: 700 }}>Client Net Profit Multiplier</div>
-              <div style={{ fontSize: 28, fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
+              <div style={{ fontSize: 'clamp(22px, 4.5vw, 26px)', fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
                 {netProfitMultiplier}x Net Return
               </div>
               <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4 }}>
-                You keep ${netProfitMultiplier.toFixed(1)} for every $1 paid to AETHEL
+                Keep ${netProfitMultiplier.toFixed(1)} for every $1 fee
               </div>
             </div>
           </div>
 
           {/* Formatted Formal Statement */}
-          <div className="liquid-card" style={{ padding: 26 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+          <div className="liquid-card" style={{ padding: 18, minWidth: 0, overflow: 'hidden' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, flexWrap: 'wrap', gap: 6 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <FileText size={16} color="#bbf451" />
-                <h4 style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF' }}>Formal Gain-Share Billing Statement</h4>
+                <h4 style={{ fontSize: 13, fontWeight: 700, color: '#FFFFFF' }}>Formal Gain-Share Statement</h4>
               </div>
               <span style={{ fontSize: 10, padding: '2px 8px', borderRadius: 999, background: 'rgba(187, 244, 81, 0.15)', color: '#bbf451' }}>
                 AUDITED INVOICE SPEC
@@ -287,14 +296,16 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
 
             <pre style={{
               background: 'rgba(2, 13, 14, 0.9)',
-              padding: 18,
-              borderRadius: 14,
+              padding: 14,
+              borderRadius: 12,
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 11,
-              lineHeight: 1.6,
+              fontSize: 'clamp(9px, 2.5vw, 11px)',
+              lineHeight: 1.5,
               color: '#DAF1DE',
               border: '1px solid rgba(35, 83, 71, 0.5)',
               overflowX: 'auto',
+              maxWidth: '100%',
+              boxSizing: 'border-box',
               whiteSpace: 'pre'
             }}>
               {invoiceSummary}
@@ -308,7 +319,9 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
         marginTop: 10,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 12
       }}>
         {onNavigatePrev && (
           <button
