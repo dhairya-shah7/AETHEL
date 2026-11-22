@@ -21,10 +21,16 @@ interface SidebarDockProps {
 
 export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTab }) => {
   const navItems: { id: TabType; label: string; shortLabel: string; icon: React.ReactNode }[] = [
-    { id: 'showcase', label: '1. Overview', shortLabel: 'Overview', icon: <Sparkles size={19} /> },
-    { id: 'cockpit', label: '2. Live Test', shortLabel: 'Live Test', icon: <Cpu size={19} /> },
-    { id: 'gainshare', label: '3. Savings Calculator', shortLabel: 'Savings', icon: <Zap size={19} /> },
-    { id: 'overview', label: '4. Diagnostics', shortLabel: 'Diagnostics', icon: <Layers size={17} /> },
+    { id: 'showcase', label: '1. Executive Overview', shortLabel: 'Overview', icon: <Sparkles size={18} /> },
+    { id: 'cockpit', label: '2. Live Silicon Engine', shortLabel: 'Live Engine', icon: <Cpu size={18} /> },
+    { id: 'gainshare', label: '3. Cloud Savings Calculator', shortLabel: 'Savings', icon: <Zap size={18} /> },
+    { id: 'overview', label: '4. System Diagnostics', shortLabel: 'Diagnostics', icon: <Layers size={18} /> },
+    { id: 'thermal', label: '5. ThermalOps Co-Scheduler', shortLabel: 'ThermalOps', icon: <Flame size={18} /> },
+    { id: 'telemetry', label: '6. Kernel RAPL Telemetry', shortLabel: 'Telemetry', icon: <Activity size={18} /> },
+    { id: 'boavizta', label: '7. Boavizta Carbon Engine', shortLabel: 'Carbon', icon: <Cpu size={18} /> },
+    { id: 'governance', label: '8. SEBI BRSR Compliance', shortLabel: 'SEBI ESG', icon: <ShieldCheck size={18} /> },
+    { id: 'sandbox', label: '9. CI/CD AST Sandbox', shortLabel: 'Sandbox', icon: <Terminal size={18} /> },
+    { id: 'marketplace', label: '10. Cloud Marketplace', shortLabel: 'Marketplace', icon: <Store size={18} /> },
   ];
 
   return (
@@ -59,11 +65,14 @@ export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTa
           WebkitBackdropFilter: 'blur(30px) saturate(190%)',
           border: '1px solid rgba(142, 182, 155, 0.28)',
           borderRadius: 9999,
-          padding: '12px 8px',
+          padding: '10px 6px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 14,
+          gap: 8,
+          maxHeight: '80vh',
+          overflowY: 'auto',
+          scrollbarWidth: 'none',
           boxShadow: '0 20px 45px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(218, 241, 222, 0.25)'
         }}>
           {navItems.map((item) => {
@@ -76,8 +85,8 @@ export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTa
                 aria-label={item.label}
                 style={{
                   position: 'relative',
-                  width: 48,
-                  height: 48,
+                  width: 42,
+                  height: 42,
                   borderRadius: '50%',
                   border: 'none',
                   cursor: 'pointer',
@@ -133,7 +142,7 @@ export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTa
       </aside>
 
       {/* B. MOBILE & TABLET FLOATING BOTTOM NAVIGATION BAR (Safe from System Gestures) */}
-      <nav className="bottom-nav-mobile" aria-label="Mobile Navigation">
+      <nav className="bottom-nav-mobile" aria-label="Mobile Navigation" style={{ overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
         {navItems.map((item) => {
           const isActive = activeTab === item.id;
           return (
@@ -146,7 +155,7 @@ export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTa
                 flexDirection: 'column',
                 alignItems: 'center',
                 gap: 4,
-                padding: '8px 12px',
+                padding: '6px 12px',
                 borderRadius: 9999,
                 background: isActive 
                   ? 'linear-gradient(135deg, #bbf451 0%, #84cc16 100%)' 
@@ -156,12 +165,12 @@ export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTa
                 cursor: 'pointer',
                 boxShadow: isActive ? '0 0 16px rgba(187, 244, 81, 0.55)' : 'none',
                 transition: 'all 0.25s ease',
-                flex: 1,
-                minWidth: 58
+                flex: '0 0 auto',
+                minWidth: 62
               }}
             >
               {item.icon}
-              <span style={{ fontSize: 10, fontWeight: isActive ? 800 : 600, whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: 9.5, fontWeight: isActive ? 800 : 600, whiteSpace: 'nowrap' }}>
                 {item.shortLabel}
               </span>
             </button>
