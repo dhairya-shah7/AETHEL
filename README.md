@@ -1,3 +1,14 @@
+---
+title: Aethel Engine
+emoji: ⚡
+colorFrom: green
+colorTo: green
+sdk: gradio
+sdk_version: 4.44.0
+app_file: app.py
+pinned: false
+---
+
 # AETHEL: Autonomous Silicon-to-Software Thermal Co-Scheduler & GreenOps Platform
 
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
