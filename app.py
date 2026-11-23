@@ -2,6 +2,15 @@ import gradio as gr
 import uvicorn
 from verde_cloud.server import app as fastapi_app
 
+# Support Hugging Face ZeroGPU if active
+try:
+    import spaces
+    @spaces.GPU
+    def zero_gpu_probe():
+        return "ZeroGPU Active"
+except Exception:
+    pass
+
 # 1. Mount a clean status block for the Space UI
 with gr.Blocks(title="AETHEL Real Silicon Engine API") as demo:
     gr.Markdown("""
