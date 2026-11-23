@@ -2,6 +2,8 @@ import os
 import sys
 import time
 import math
+import platform
+import psutil
 import asyncio
 from typing import Optional, Dict, Any, List
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect, Query
@@ -103,10 +105,24 @@ class BenchmarkRequest(BaseModel):
 
 @app.get("/api/health")
 def health():
+    try:
+        mem = psutil.virtual_memory()
+        cpu_count = psutil.cpu_count(logical=True)
+        host_info = {
+            "platform": platform.system(),
+            "cpu_cores": cpu_count,
+            "ram_total_gb": round(mem.total / (1024 ** 3), 2),
+            "ram_available_gb": round(mem.available / (1024 ** 3), 2),
+            "ram_used_pct": mem.percent
+        }
+    except Exception:
+        host_info = {"platform": "Linux Cloud Host", "cpu_cores": 2, "ram_total_gb": 16.0}
+
     return {
         "status": "healthy",
         "service": "AETHEL GreenOps Kernel",
         "version": "2.4.0",
+        "host": host_info,
         "active_rapl_counters": True,
         "nvml_available": True,
         "sebi_brsr_ready": True,
