@@ -13,7 +13,7 @@ with gr.Blocks(title="AETHEL Real Silicon Engine API") as demo:
     """)
 
 # 2. Mount Gradio directly onto FastAPI
-app = gr.mount_gradio_app(fastapi_app, demo, path="/ui")
+app = gr.mount_gradio_app(fastapi_app, demo, path="/")
 
 if __name__ == "__main__":
     uvicorn.run("app:app", host="0.0.0.0", port=7860, reload=False)
