@@ -223,14 +223,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
       </header>
-
-      {/* 2. MOBILE / TABLET HEADER (< 1024px): A SINGLE CLEAN NORMAL PAGE NAME ON TOP */}
-      <header className="app-top-navbar navbar-mobile">
-        <div className="navbar-mobile-title">
-          {current.icon}
-          <span>{current.title}</span>
-        </div>
-      </header>
     </>
   );
 };

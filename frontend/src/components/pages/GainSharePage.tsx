@@ -49,19 +49,22 @@ export const GainSharePage: React.FC<GainSharePageProps> = ({
   const netClientSavingsMonthly = Number((grossSavingsMonthly - aethelFeeMonthly).toFixed(2));
   const netProfitMultiplier = aethelFeeMonthly > 0 ? Number((netClientSavingsMonthly / aethelFeeMonthly).toFixed(1)) : 4.0;
 
-  const invoiceSummary = `============================================================
-           AETHEL GREENOPS BILLING SUMMARY
-============================================================
-Workload:               ${workloadName} (${cloudProvider.toUpperCase()} - ${instanceType})
-Monthly Baseline Spend: $${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-Monthly Optimized Spend:$${optimizedSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-------------------------------------------------------------
-Total Gross Savings:    $${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
-Annualized Run-Rate:    $${annualizedGrossSavings.toLocaleString('en-US', { minimumFractionDigits: 2 })} / year
-AETHEL ${(commissionRate * 100).toFixed(0)}% Success Fee: $${aethelFeeMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-NET CLIENT CASH SAVED:  $${netClientSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
-Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
-============================================================`;
+  const invoiceSummary = `==============================================
+       AETHEL GREENOPS BILLING SUMMARY
+==============================================
+Workload:   ${workloadName}
+Cluster:    ${cloudProvider.toUpperCase()} (${instanceType})
+Nodes:      ${nodesCount} Dedicated Nodes (720 hrs/mo)
+----------------------------------------------
+Baseline:   $${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
+Optimized:  $${optimizedSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
+----------------------------------------------
+Gross Cut:  $${grossSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month (${reductionPct}% Cut)
+Annualized: $${annualizedGrossSavings.toLocaleString('en-US', { minimumFractionDigits: 2 })} / year
+AETHEL Fee: $${aethelFeeMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} (${(commissionRate * 100).toFixed(0)}% Gain-Share)
+NET SAVED:  $${netClientSavingsMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })} / month
+Client ROI: ${netProfitMultiplier}x Cash Kept ($${netProfitMultiplier} kept per $1 fee)
+==============================================`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 28, maxWidth: 1280, margin: '0 auto', width: '100%', minWidth: 0, overflowX: 'hidden' }}>
@@ -246,8 +249,8 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
               <div style={{ fontSize: 'clamp(20px, 4vw, 24px)', fontWeight: 800, color: '#FFFFFF', marginTop: 4 }}>
                 ${baselineSpendMonthly.toLocaleString('en-US', { minimumFractionDigits: 2 })}
               </div>
-              <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {nodesCount} servers × {instanceType}
+              <div style={{ fontSize: 11, color: 'var(--c-sage)', marginTop: 4, wordBreak: 'break-word' }}>
+                {nodesCount} servers × {cloudProvider.toUpperCase()} ({instanceType})
               </div>
             </div>
 
@@ -296,17 +299,19 @@ Client Net Multiplier:  ${netProfitMultiplier}x Cash Kept
 
             <pre style={{
               background: 'rgba(2, 13, 14, 0.9)',
-              padding: 14,
+              padding: '14px 16px',
               borderRadius: 12,
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 'clamp(9px, 2.5vw, 11px)',
-              lineHeight: 1.5,
+              fontSize: 'clamp(9.5px, 2.4vw, 11px)',
+              lineHeight: 1.6,
               color: '#DAF1DE',
               border: '1px solid rgba(35, 83, 71, 0.5)',
               overflowX: 'auto',
               maxWidth: '100%',
               boxSizing: 'border-box',
-              whiteSpace: 'pre'
+              whiteSpace: 'pre-wrap',
+              wordBreak: 'break-word',
+              overflowWrap: 'anywhere'
             }}>
               {invoiceSummary}
             </pre>
