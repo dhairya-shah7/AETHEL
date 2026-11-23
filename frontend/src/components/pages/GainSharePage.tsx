@@ -82,9 +82,9 @@ Client ROI: ${netProfitMultiplier}x Cash Kept ($${netProfitMultiplier} kept per 
       </div>
 
       {/* Main Ledger Split */}
-      <div className="grid-split">
+      <div className="grid-split" style={{ alignItems: 'start' }}>
         {/* Parameters Form */}
-        <div className="liquid-card" style={{ padding: 22, minWidth: 0, overflow: 'hidden' }}>
+        <div className="liquid-card" style={{ padding: 22, minWidth: 0, overflow: 'hidden', alignSelf: 'start', height: 'fit-content' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <Calculator size={18} color="#bbf451" />
             <h3 style={{ fontSize: 18, fontWeight: 700, color: '#FFFFFF' }}>Cloud Setup & Sliders</h3>

@@ -409,8 +409,9 @@ select option {
 
 .grid-split {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
+  align-items: start;
 }
 
 .input-grid-2col {
