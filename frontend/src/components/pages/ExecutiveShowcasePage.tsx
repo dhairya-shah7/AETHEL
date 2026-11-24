@@ -56,32 +56,63 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
         flexWrap: 'wrap',
         gap: 20
       }}>
-        <div style={{ flex: '1 1 280px', minWidth: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
+        <div style={{ flex: '1 1 340px', minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
             <span style={{
-              background: 'rgba(187, 244, 81, 0.15)',
-              border: '1px solid rgba(187, 244, 81, 0.4)',
+              background: 'linear-gradient(135deg, rgba(187, 244, 81, 0.2), rgba(35, 83, 71, 0.4))',
+              border: '1px solid rgba(187, 244, 81, 0.5)',
               color: '#bbf451',
-              padding: '3px 10px',
+              padding: '4px 12px',
               borderRadius: 999,
               fontSize: 11,
-              fontWeight: 700,
+              fontWeight: 800,
               letterSpacing: '0.08em',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
+              boxShadow: '0 0 15px rgba(187, 244, 81, 0.2)'
             }}>
-              Overview
+              Autonomous Cloud AI Operating System
             </span>
-            <span style={{ fontSize: 12, color: 'var(--c-sage)' }}>
-              How AETHEL Protects Servers & Cuts Costs
+            <span style={{ fontSize: 12, color: 'var(--c-sage)', fontWeight: 600 }}>
+              Sovereign Performance & Cost Intelligence
             </span>
           </div>
-          <h1 style={{ fontSize: 'clamp(20px, 4vw, 26px)', fontWeight: 800, margin: '4px 0 8px 0', color: '#DAF1DE', letterSpacing: '-0.02em', wordBreak: 'break-word' }}>
-            What Happens to Cloud Servers: Without vs. With AETHEL
+          <h1 style={{
+            fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
+            fontSize: 'clamp(24px, 4.5vw, 34px)',
+            fontWeight: 900,
+            lineHeight: 1.2,
+            margin: '6px 0 12px 0',
+            letterSpacing: '-0.025em',
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #DAF1DE 55%, #bbf451 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            wordBreak: 'break-word'
+          }}>
+            Autonomous AI Infrastructure: Slashing Cloud Spend & Eliminating GPU Waste
           </h1>
-          <p style={{ fontSize: 14, color: 'var(--c-sage)', margin: 0, maxWidth: 780, lineHeight: 1.5 }}>
-            When AI workloads run heavily, servers overheat and silently slow down, wasting your cloud budget. 
-            AETHEL monitors your server temperatures, prevents throttling, and saves up to 35% on your monthly bill.
-          </p>
+          <div style={{
+            fontSize: 'clamp(13px, 1.8vw, 14.5px)',
+            color: 'var(--c-sage)',
+            margin: 0,
+            maxWidth: 820,
+            lineHeight: 1.6,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 6
+          }}>
+            <div>
+              <strong style={{ color: '#bbf451', fontWeight: 800 }}>What AETHEL Does:</strong>{' '}
+              <span>
+                Consolidates 4 disparate tools (DCGM, CAST AI, Zeus, vLLM) into one sovereign operating system that dynamically optimizes model precision, routes prompts to optimal parameter tiers, and balances GPU thermal loads.
+              </span>
+            </div>
+            <div>
+              <strong style={{ color: '#4ade80', fontWeight: 800 }}>What AETHEL Solves:</strong>{' '}
+              <span>
+                Stops silent thermal throttling (-35% clock drops), eliminates paying $1.80/M tokens on trivial queries, and guarantees zero accuracy loss—all on a pure gain-share model with $0 upfront cost.
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* 3 Core Headline Metrics */}
