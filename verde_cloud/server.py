@@ -107,6 +107,7 @@ class AdaptiveBenchmarkRequest(BaseModel):
 
 class PromptRouteRequest(BaseModel):
     prompt: str = Field(default="Classify whether this incoming customer message is a billing inquiry or technical outage.")
+    session_tier: Optional[str] = None
 
 class SpatialDispatchRequest(BaseModel):
     workload_kwh: float = Field(default=120.0, ge=1.0)
@@ -114,6 +115,7 @@ class SpatialDispatchRequest(BaseModel):
     source_region: str = "ap-south-1"
     target_region: str = "us-west-2"
     is_flexible_batch: bool = True
+    compliance_boundary: str = "GLOBAL"
 
 # ----------------- Endpoints -----------------
 
@@ -412,7 +414,7 @@ def run_adaptive_benchmark(req: AdaptiveBenchmarkRequest = AdaptiveBenchmarkRequ
 @app.post("/api/engine/route-workload")
 def route_workload(req: PromptRouteRequest):
     """Analyzes prompt complexity and autonomously routes to 8B, 14B, or 70B tier."""
-    return SemanticModelRouter.analyze_prompt_complexity(req.prompt)
+    return SemanticModelRouter.analyze_prompt_complexity(req.prompt, session_tier=req.session_tier)
 
 @app.get("/api/engine/replacement-matrix")
 def get_replacement_matrix():
@@ -421,13 +423,14 @@ def get_replacement_matrix():
 
 @app.post("/api/engine/spatial-dispatch")
 def evaluate_spatial_dispatch(req: SpatialDispatchRequest):
-    """Evaluates multi-region carbon dispatch factoring in physical network egress penalty."""
+    """Evaluates multi-region carbon dispatch factoring in physical network egress penalty and residency."""
     return SpatialCarbonArbiter.evaluate_spatial_dispatch(
         workload_kwh=req.workload_kwh,
         payload_gb=req.payload_gb,
         source_region=req.source_region,
         target_region=req.target_region,
-        is_flexible_batch=req.is_flexible_batch
+        is_flexible_batch=req.is_flexible_batch,
+        compliance_boundary=req.compliance_boundary
     )
 
 @app.get("/api/trace/datasets")

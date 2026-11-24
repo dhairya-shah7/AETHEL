@@ -741,9 +741,16 @@ export interface SemanticRoutingResult {
     tier_name: string;
     candidate_models: string[];
     decision_reason: string;
+    context_inherited?: boolean;
     latency_estimate_ms: number;
     active_power_watts: number;
     cost_per_m_tokens_usd: number;
+  };
+  speculative_escalation?: {
+    armed: boolean;
+    confidence_threshold: number;
+    fallback_tier: string;
+    policy: string;
   };
   autonomous_savings_vs_unmanaged_70b: {
     active_power_watts?: number;
@@ -923,7 +930,7 @@ export async function routeWorkloadPrompt(prompt: string): Promise<SemanticRouti
 
   // Deterministic client fallback analysis
   const words = prompt.trim().split(/\s+/).length;
-  const isReasoning = /proof|prove|derive|algorithm|code|debug|refactor|complex|why|solve|gradient|equation|math|calculus|theorem/i.test(prompt);
+  const isReasoning = /proof|prove|derive|algorithm|code|debug|refactor|complex|why|solve|gradient|equation|math|calculus|theorem|fibonacci|prime|factorial|\b\d+(st|nd|rd|th)\b/i.test(prompt);
   const isSummarize = /summarize|condense|translate|brief|rephrase/i.test(prompt);
 
   const tier = isReasoning || words > 150 ? 'large_70b' : (isSummarize || words > 50 ? 'medium_14b' : 'small_8b');

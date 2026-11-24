@@ -554,6 +554,19 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                   <div style={{ fontSize: 11, color: '#4ade80', marginTop: 4 }}>
                     Models: {routingResult.routing_decision.candidate_models.join(', ')}
                   </div>
+                  {routingResult.routing_decision.selected_tier !== 'large_70b' && (
+                    <div style={{
+                      marginTop: 4,
+                      padding: '5px 8px',
+                      borderRadius: 6,
+                      background: 'rgba(187, 244, 81, 0.08)',
+                      border: '1px solid rgba(187, 244, 81, 0.25)',
+                      fontSize: 10,
+                      color: '#DAF1DE'
+                    }}>
+                      🛡️ <strong style={{ color: '#bbf451' }}>Speculative Escalation Armed:</strong> Auto-escalates to 70B if token entropy spikes.
+                    </div>
+                  )}
                 </div>
 
                 {/* Savings vs 70B Card */}

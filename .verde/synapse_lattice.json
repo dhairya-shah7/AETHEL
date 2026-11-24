@@ -493,5 +493,32 @@
     "confidence": 0.98,
     "source": "thermal_co_scheduler",
     "timestamp": 1795529272086
+  },
+  {
+    "id": "syn-1795546734169",
+    "subject": "GPU_Silicon_Junction",
+    "predicate": "must_not_exceed",
+    "object": "82.0_Celsius_Thermal_Tripwire",
+    "confidence": 0.99,
+    "source": "thermal_co_scheduler",
+    "timestamp": 1795546734169
+  },
+  {
+    "id": "syn-1795546734173",
+    "subject": "Cascading_Circuit_Breaker",
+    "predicate": "trips_when_queue_slope_exceeds",
+    "object": "25_jobs_per_sec",
+    "confidence": 0.95,
+    "source": "thermal_co_scheduler",
+    "timestamp": 1795546734173
+  },
+  {
+    "id": "syn-1795546734176",
+    "subject": "Stabilization_Dwell_Window",
+    "predicate": "enforces_minimum_hysteresis",
+    "object": "60_seconds_cooldown",
+    "confidence": 0.98,
+    "source": "thermal_co_scheduler",
+    "timestamp": 1795546734176
   }
 ]

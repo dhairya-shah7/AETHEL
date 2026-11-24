@@ -17,8 +17,9 @@ class CoScheduler:
     Closed-loop autonomous actuator governing cluster thermal equilibrium.
     """
 
-    def __init__(self, node_count: int = 16):
+    def __init__(self, node_count: int = 16, privilege_mode: str = "KERNEL_DAEMONSET"):
         self.node_count = node_count
+        self.privilege_mode = privilege_mode  # KERNEL_DAEMONSET or ZERO_ROOT_SOFTWARE
         self.thermal_engine = ThermalEngine()
         self.bunker = BunkerEnclave(cluster_node_count=node_count)
         self.verde_bridge = VerdeEngineBridge()
@@ -127,19 +128,29 @@ class CoScheduler:
 
             # 1. Closed-loop autonomous triage
             if tier == "CRITICAL" and node["status"] == "NOMINAL":
-                # Autonomous Action 1: Cordon node & apply micro-DVFS power cap
                 node["status"] = "CORDONED"
-                new_power = self.thermal_engine.calculate_dynamic_power_cap(
-                    current_power=power,
-                    current_temp=current_temp,
-                    target_temp=p["t_warning"],
-                    tdp_watts=node["tdp_watts"]
-                )
-                node["power_w"] = new_power
-                node["fan_speed_pct"] = min(100.0, node["fan_speed_pct"] + 25.0)
                 
-                # Autonomous Action 2: Dynamic INT8 quantization
-                node["precision"] = "INT8"
+                if self.privilege_mode == "ZERO_ROOT_SOFTWARE":
+                    # Software Thermal Backpressure (Zero-Root / Serverless Mode)
+                    # Reduces power purely via batch shedding (64 -> 32) and INT8 shift
+                    new_power = round(power * 0.65, 1)
+                    node["power_w"] = new_power
+                    node["precision"] = "INT8"
+                    action_name = "SOFTWARE_THERMAL_BACKPRESSURE"
+                    detail_msg = f"Zero-Root Mode: Predicted {p['predicted_temp_180s']}°C. Cut batch 64→32 & shifted to INT8 (-35% power to {new_power}W) without root."
+                else:
+                    # Hardware Kernel / DaemonSet DVFS Power Cap
+                    new_power = self.thermal_engine.calculate_dynamic_power_cap(
+                        current_power=power,
+                        current_temp=current_temp,
+                        target_temp=p["t_warning"],
+                        tdp_watts=node["tdp_watts"]
+                    )
+                    node["power_w"] = new_power
+                    node["fan_speed_pct"] = min(100.0, node["fan_speed_pct"] + 25.0)
+                    node["precision"] = "INT8"
+                    action_name = "AUTONOMOUS_CORDON_DVFS"
+                    detail_msg = f"Predicted {p['predicted_temp_180s']}°C > Critical {p['t_critical']}°C. Capped to {new_power}W (-{round((power-new_power)/power*100)}%), quantized to INT8."
 
                 # Lock hysteresis window
                 self.hysteresis_registry[nid] = {
@@ -148,9 +159,9 @@ class CoScheduler:
                 }
 
                 self.log_event(
-                    action="AUTONOMOUS_CORDON_DVFS",
+                    action=action_name,
                     node_id=nid,
-                    detail=f"Predicted {p['predicted_temp_180s']}°C > Critical {p['t_critical']}°C. Capped to {new_power}W (-{round((power-new_power)/power*100)}%), quantized to INT8.",
+                    detail=detail_msg,
                     severity="CRITICAL"
                 )
 

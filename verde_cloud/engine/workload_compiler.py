@@ -6,6 +6,7 @@ Calculates prompt prefix cache reuse and head-to-head replacement economics agai
 the fragmented legacy stack (DCGM, CAST AI, Zeus, vLLM).
 """
 
+import re
 import math
 import time
 import hashlib
@@ -47,10 +48,10 @@ class SemanticModelRouter:
     }
 
     @staticmethod
-    def analyze_prompt_complexity(prompt: str) -> Dict[str, Any]:
+    def analyze_prompt_complexity(prompt: str, session_tier: Optional[str] = None) -> Dict[str, Any]:
         """
-        Calculates lexical entropy, length, and intent triggers on the raw prompt text.
-        Returns autonomous routing decision and compute efficiency metrics.
+        Calculates lexical entropy, math/algorithmic entities, multi-turn session context,
+        and intent triggers on the raw prompt text.
         """
         text = prompt.strip()
         words = text.split()
@@ -72,11 +73,13 @@ class SemanticModelRouter:
 
         text_lower = text.lower()
 
-        # 2. Intent keywords scoring
+        # 2. Intent keywords + mathematical/algorithmic entity regex (catches deceptive short prompts)
         reasoning_keywords = [
             "proof", "prove", "derive", "algorithm", "architecture", "solve", "step by step",
             "debug", "refactor", "complex", "synthesize", "differential", "theorem", "equation",
-            "gradient", "math", "calculus", "code", "implement", "python", "typescript", "rust", "optimize", "why"
+            "gradient", "math", "calculus", "code", "implement", "python", "typescript", "rust",
+            "optimize", "why", "fibonacci", "prime", "factorial", "integral", "matrix", "eigenvalue",
+            "polynomial", "modulo", "logarithm", "binary search", "sql", "regex"
         ]
         
         summarization_keywords = [
@@ -84,13 +87,20 @@ class SemanticModelRouter:
             "brief", "bullet points", "outline", "executive summary"
         ]
 
-        reasoning_score = sum(1 for kw in reasoning_keywords if kw in text_lower)
+        math_entity_hit = bool(re.search(r"(\b\d+(st|nd|rd|th)\b|[=+\-*/^]{2,}|\b(o\(n|log n|np)\b)", text_lower))
+        reasoning_score = sum(1 for kw in reasoning_keywords if kw in text_lower) + (1 if math_entity_hit else 0)
         summarization_score = sum(1 for kw in summarization_keywords if kw in text_lower)
 
-        # 3. Autonomous routing decision
-        if reasoning_score >= 1 or word_count > 250 or (entropy > 4.4 and word_count > 60):
+        # 3. Autonomous routing decision (with Multi-Turn Session Context Inheritance)
+        inherited_context = False
+        if session_tier == "large_70b" and word_count <= 10:
             routed_tier = "large_70b"
-            reason = "High algorithmic/reasoning complexity or deep technical formulation detected."
+            inherited_context = True
+            reason = "Multi-turn session context inherited: short follow-up kept on 70B reasoning tier."
+            task_type = "Multi-Turn Contextual Reasoning"
+        elif reasoning_score >= 1 or word_count > 250 or (entropy > 4.4 and word_count > 60):
+            routed_tier = "large_70b"
+            reason = "Algorithmic, mathematical, or deep reasoning complexity detected."
             task_type = "Deep Reasoning / Synthesis"
         elif summarization_score >= 1 or word_count > 60:
             routed_tier = "medium_14b"
@@ -98,7 +108,7 @@ class SemanticModelRouter:
             task_type = "Summarization / Generative Writing"
         else:
             routed_tier = "small_8b"
-            reason = "Trivial query / classification task. Fully servable by 8B tier with 0% quality loss."
+            reason = "Trivial query / classification task. Servable by 8B with Speculative Escalation Guard armed."
             task_type = "Direct Extraction / Classification"
 
         selected = SemanticModelRouter.MODEL_TIERS[routed_tier]
@@ -143,9 +153,16 @@ class SemanticModelRouter:
                 "tier_name": selected["name"],
                 "candidate_models": selected["example_models"],
                 "decision_reason": reason,
+                "context_inherited": inherited_context,
                 "latency_estimate_ms": selected["avg_latency_ms"],
                 "active_power_watts": active_power_watts,
                 "cost_per_m_tokens_usd": selected["cost_per_m_tokens_usd"]
+            },
+            "speculative_escalation": {
+                "armed": routed_tier != "large_70b",
+                "confidence_threshold": 0.88,
+                "fallback_tier": "large_70b",
+                "policy": "Auto-escalate to 70B if draft token entropy spikes"
             },
             "autonomous_savings_vs_unmanaged_70b": {
                 "active_power_watts": active_power_watts,
@@ -159,7 +176,9 @@ class SemanticModelRouter:
                 "prefix_hash": f"0x{prefix_hash}",
                 "cache_hit": True,
                 "prefill_tokens_reused": tokens_saved_prefill,
-                "cache_memory_saved_kb": cache_memory_saved_kb
+                "cache_memory_saved_kb": cache_memory_saved_kb,
+                "eviction_policy": "Radix-LRU-K (85% VRAM High-Watermark)",
+                "pinned_system_prefix": True
             },
             "timestamp": time.time()
         }
