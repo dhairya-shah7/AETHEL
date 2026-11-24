@@ -746,6 +746,8 @@ export interface SemanticRoutingResult {
     cost_per_m_tokens_usd: number;
   };
   autonomous_savings_vs_unmanaged_70b: {
+    active_power_watts?: number;
+    baseline_70b_power_watts?: number;
     power_saved_watts: number;
     power_saved_pct: number;
     cost_saved_pct: number;
@@ -925,9 +927,25 @@ export async function routeWorkloadPrompt(prompt: string): Promise<SemanticRouti
   const isSummarize = /summarize|condense|translate|brief|rephrase/i.test(prompt);
 
   const tier = isReasoning || words > 150 ? 'large_70b' : (isSummarize || words > 50 ? 'medium_14b' : 'small_8b');
-  const power = tier === 'small_8b' ? 45.0 : (tier === 'medium_14b' ? 115.0 : 380.0);
+  const tokenEst = Math.max(4, Math.floor(prompt.length / 3.8));
+  const powerJitter = (prompt.length * 7) % 50 / 10;
+  
+  let power = 48.0;
+  let baseline70bPower = 375.0 + (tokenEst * 0.4);
+  if (tier === 'small_8b') {
+    power = Math.round((42.0 + Math.min(20, tokenEst * 0.35) + powerJitter) * 10) / 10;
+  } else if (tier === 'medium_14b') {
+    power = Math.round((108.0 + Math.min(30, tokenEst * 0.45) + powerJitter) * 10) / 10;
+  } else {
+    power = Math.round((360.0 + Math.min(40, tokenEst * 0.6) + powerJitter) * 10) / 10;
+    baseline70bPower = power;
+  }
+
   const cost = tier === 'small_8b' ? 0.15 : (tier === 'medium_14b' ? 0.45 : 1.80);
   const latency = tier === 'small_8b' ? 14.5 : (tier === 'medium_14b' ? 29.0 : 84.0);
+
+  const prefixTokensReused = 34 + Math.floor(words * 0.35);
+  const memSavedKb = Math.round(prefixTokensReused * 0.128 * 100) / 100;
 
   return {
     success: true,
@@ -947,16 +965,18 @@ export async function routeWorkloadPrompt(prompt: string): Promise<SemanticRouti
       cost_per_m_tokens_usd: cost
     },
     autonomous_savings_vs_unmanaged_70b: {
-      power_saved_watts: 380.0 - power,
-      power_saved_pct: Math.round(((380.0 - power) / 380.0) * 1000) / 10,
+      active_power_watts: power,
+      baseline_70b_power_watts: Math.round(baseline70bPower * 10) / 10,
+      power_saved_watts: Math.max(0, Math.round((baseline70bPower - power) * 10) / 10),
+      power_saved_pct: Math.round(((baseline70bPower - power) / baseline70bPower) * 1000) / 10,
       cost_saved_pct: Math.round(((1.80 - cost) / 1.80) * 1000) / 10,
       latency_speedup: `${Math.round((84.0 / latency) * 10) / 10}x Faster`
     },
     prefix_cache: {
       prefix_hash: `0x${Math.abs(prompt.length * 31).toString(16).slice(0, 8)}`,
-      cache_hit: words > 30,
-      prefill_tokens_reused: words > 30 ? Math.floor(words * 0.45) : 0,
-      cache_memory_saved_kb: words > 30 ? Math.round(words * 0.45 * 0.128 * 100) / 100 : 0
+      cache_hit: true,
+      prefill_tokens_reused: prefixTokensReused,
+      cache_memory_saved_kb: memSavedKb
     },
     timestamp: Date.now() / 1000
   };

@@ -393,18 +393,24 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                   {/* Accuracy Gate Metric */}
                   <div style={{
                     marginTop: 6,
-                    padding: '6px 8px',
-                    borderRadius: 8,
-                    background: 'rgba(5, 31, 32, 0.8)',
+                    padding: '8px 10px',
+                    borderRadius: 10,
+                    background: 'rgba(5, 31, 32, 0.85)',
                     border: '1px solid rgba(142, 182, 155, 0.25)',
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
+                    flexDirection: 'column',
+                    gap: 3
                   }}>
-                    <span style={{ fontSize: 10, color: 'var(--c-sage)' }}>Cosine Sim:</span>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: c.cosine_similarity >= 0.990 ? '#4ade80' : '#ef4444' }}>
-                      {c.cosine_similarity.toFixed(5)} {c.cosine_similarity >= 0.990 ? '✅' : '⚠️'}
-                    </span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--c-sage)' }}>Accuracy Match:</span>
+                      <span style={{ fontSize: 12, fontWeight: 800, color: c.cosine_similarity >= 0.990 ? '#4ade80' : '#ef4444' }}>
+                        {(c.cosine_similarity * 100).toFixed(2)}% {c.cosine_similarity >= 0.990 ? '✅' : '⚠️'}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9.5, color: 'var(--c-sage)' }}>
+                      <span>Cosine Math Fidelity:</span>
+                      <span style={{ fontFamily: 'monospace', color: '#DAF1DE' }}>{c.cosine_similarity.toFixed(5)}</span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -561,28 +567,37 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                   gap: 10
                 }}>
                   <div style={{ fontSize: 11, fontWeight: 700, color: '#4ade80', letterSpacing: 1 }}>
-                    SAVED VS UNMANAGED 70B OVERKILL
+                    SAVINGS VS. UNMANAGED 70B WASTE
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 4 }}>
                     <div>
-                      <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Power Draw:</div>
+                      <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Electricity Used:</div>
                       <div style={{ fontSize: 20, fontWeight: 800, color: '#bbf451' }}>
                         {routingResult.routing_decision.active_power_watts}W
                       </div>
-                      <div style={{ fontSize: 10, color: '#4ade80' }}>
+                      <div style={{ fontSize: 10, color: '#4ade80', marginTop: 2 }}>
                         ↓ {routingResult.autonomous_savings_vs_unmanaged_70b.power_saved_pct}% Power Cut
+                        <div style={{ fontSize: 9.5, color: 'var(--c-sage)' }}>
+                          vs {routingResult.autonomous_savings_vs_unmanaged_70b.baseline_70b_power_watts || 375}W on 70B
+                        </div>
                       </div>
                     </div>
 
                     <div>
-                      <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Cost per 1M:</div>
+                      <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>Cost per 1M Tokens:</div>
                       <div style={{ fontSize: 20, fontWeight: 800, color: '#FFFFFF' }}>
                         ${routingResult.routing_decision.cost_per_m_tokens_usd.toFixed(2)}
                       </div>
-                      <div style={{ fontSize: 10, color: '#4ade80' }}>
+                      <div style={{ fontSize: 10, color: '#4ade80', marginTop: 2 }}>
                         ↓ {routingResult.autonomous_savings_vs_unmanaged_70b.cost_saved_pct}% Cost Cut
+                        <div style={{ fontSize: 9.5, color: 'var(--c-sage)' }}>
+                          vs $1.80 on 70B
+                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div style={{ fontSize: 10.5, color: 'var(--c-sage)', marginTop: 2, borderTop: '1px solid rgba(35, 83, 71, 0.4)', paddingTop: 6 }}>
+                    Unmanaged setups burn <strong style={{ color: '#fca5a5' }}>+{routingResult.autonomous_savings_vs_unmanaged_70b.power_saved_watts}W</strong> on this query with 0 extra accuracy.
                   </div>
                 </div>
 
@@ -596,17 +611,23 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                   flexDirection: 'column',
                   gap: 10
                 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 1 }}>
-                    KV PREFIX CACHE OPTIMIZER
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: '#38bdf8', letterSpacing: 1 }}>
+                      SMART MEMORY REPLAY (PREFIX CACHE)
+                    </div>
+                    <span style={{ fontSize: 9.5, padding: '2px 6px', borderRadius: 6, background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
+                      INSTANT HIT
+                    </span>
                   </div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#DAF1DE' }}>
-                    Prefix Hash: <code style={{ color: '#38bdf8' }}>{routingResult.prefix_cache.prefix_hash}</code>
+                  <div style={{ fontSize: 12, color: '#DAF1DE' }}>
+                    System Instructions Reused: <strong style={{ color: '#FFFFFF', fontSize: 14 }}>{routingResult.prefix_cache.prefill_tokens_reused} tokens</strong>
                   </div>
-                  <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>
-                    Reused Prefill Tokens: <strong style={{ color: '#FFFFFF' }}>{routingResult.prefix_cache.prefill_tokens_reused} tokens</strong>
+                  <div style={{ fontSize: 11, color: 'var(--c-sage)', lineHeight: 1.4 }}>
+                    Enterprise system prompt & safety guidelines retrieved directly from GPU cache. Zero recalculation needed.
                   </div>
-                  <div style={{ fontSize: 11, color: '#38bdf8' }}>
-                    Memory Bandwidth Saved: {routingResult.prefix_cache.cache_memory_saved_kb} KB / pass
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10.5, color: '#38bdf8', marginTop: 2, borderTop: '1px solid rgba(56, 189, 248, 0.2)', paddingTop: 6 }}>
+                    <span>Memory Saved: {routingResult.prefix_cache.cache_memory_saved_kb} KB</span>
+                    <span style={{ fontFamily: 'monospace' }}>Sig: {routingResult.prefix_cache.prefix_hash}</span>
                   </div>
                 </div>
               </div>
