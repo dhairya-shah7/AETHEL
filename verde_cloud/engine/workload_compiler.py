@@ -74,9 +74,9 @@ class SemanticModelRouter:
 
         # 2. Intent keywords scoring
         reasoning_keywords = [
-            "proof", "derive", "algorithm", "architecture", "solve", "step by step",
-            "debug", "refactor", "complex", "synthesize", "differential", "theorem",
-            "code", "implement", "python", "typescript", "rust", "optimize", "why"
+            "proof", "prove", "derive", "algorithm", "architecture", "solve", "step by step",
+            "debug", "refactor", "complex", "synthesize", "differential", "theorem", "equation",
+            "gradient", "math", "calculus", "code", "implement", "python", "typescript", "rust", "optimize", "why"
         ]
         
         summarization_keywords = [
@@ -88,9 +88,9 @@ class SemanticModelRouter:
         summarization_score = sum(1 for kw in summarization_keywords if kw in text_lower)
 
         # 3. Autonomous routing decision
-        if reasoning_score >= 2 or word_count > 300 or (entropy > 4.4 and word_count > 100):
+        if reasoning_score >= 1 or word_count > 250 or (entropy > 4.4 and word_count > 60):
             routed_tier = "large_70b"
-            reason = "High algorithmic/reasoning complexity or long multi-turn context detected."
+            reason = "High algorithmic/reasoning complexity or deep technical formulation detected."
             task_type = "Deep Reasoning / Synthesis"
         elif summarization_score >= 1 or word_count > 60:
             routed_tier = "medium_14b"

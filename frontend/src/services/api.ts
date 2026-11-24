@@ -923,7 +923,7 @@ export async function routeWorkloadPrompt(prompt: string): Promise<SemanticRouti
 
   // Deterministic client fallback analysis
   const words = prompt.trim().split(/\s+/).length;
-  const isReasoning = /proof|derive|algorithm|code|debug|refactor|complex|why|solve/i.test(prompt);
+  const isReasoning = /proof|prove|derive|algorithm|code|debug|refactor|complex|why|solve|gradient|equation|math|calculus|theorem/i.test(prompt);
   const isSummarize = /summarize|condense|translate|brief|rephrase/i.test(prompt);
 
   const tier = isReasoning || words > 150 ? 'large_70b' : (isSummarize || words > 50 ? 'medium_14b' : 'small_8b');

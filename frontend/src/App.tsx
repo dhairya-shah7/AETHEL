@@ -76,6 +76,7 @@ export default function App() {
           {activeTab === 'gainshare' && (
             <GainSharePage
               onNavigatePrev={() => setActiveTab('cockpit')}
+              onNavigateNext={() => setActiveTab('overview')}
               onRestart={() => setActiveTab('showcase')}
             />
           )}

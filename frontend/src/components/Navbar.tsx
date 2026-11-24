@@ -43,7 +43,7 @@ const tabMeta: Record<TabType, { title: string; subtitle: string; icon: React.Re
   thermal: { title: 'ThermalOps Co-Scheduler', subtitle: 'Silicon Thermal Equilibrium & Resilience Bunker', icon: <Flame size={16} /> },
   telemetry: { title: 'Kernel Telemetry', subtitle: 'RAPL & NVML Power Oscilloscope', icon: <Activity size={16} /> },
   boavizta: { title: 'Boavizta SCI Engine', subtitle: 'Hardware Embodied & Operational Carbon', icon: <Cpu size={16} /> },
-  governance: { title: 'SEBI BRSR Principle 6', subtitle: 'Statutory ESG Regulatory Compliance', icon: <ShieldCheck size={16} /> },
+  governance: { title: 'Global ESG & ISO 21031', subtitle: 'Statutory Emissions & SCI Compliance', icon: <ShieldCheck size={16} /> },
   sandbox: { title: 'CI/CD Developer Sandbox', subtitle: 'GitHub Actions & AST Energy Linter', icon: <Terminal size={16} /> },
   marketplace: { title: 'Cloud Marketplace', subtitle: 'AWS, GCP, Azure & Helm Deployments', icon: <Store size={16} /> },
 };
