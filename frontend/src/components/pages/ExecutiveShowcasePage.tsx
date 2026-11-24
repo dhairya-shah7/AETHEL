@@ -42,121 +42,110 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
 
   return (
     <div style={{ paddingBottom: 60 }}>
-      {/* 1. TOP EXECUTIVE HEADLINE BANNER */}
+      {/* 1. COMPACT EXECUTIVE HEADLINE BANNER */}
       <div className="executive-banner" style={{
-        background: 'linear-gradient(135deg, rgba(16, 50, 45, 0.75), rgba(7, 25, 23, 0.90))',
-        border: '1px solid rgba(187, 244, 81, 0.35)',
-        borderRadius: 18,
-        padding: '24px 28px',
-        marginBottom: 24,
-        boxShadow: '0 12px 35px rgba(0,0,0,0.45)',
+        background: 'linear-gradient(135deg, rgba(16, 50, 45, 0.65), rgba(7, 25, 23, 0.85))',
+        border: '1px solid rgba(187, 244, 81, 0.3)',
+        borderRadius: 16,
+        padding: '18px 22px',
+        marginBottom: 20,
+        boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        gap: 20
+        gap: 16
       }}>
-        <div style={{ flex: '1 1 340px', minWidth: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+        <div style={{ flex: '1 1 500px', minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
             <span style={{
-              background: 'linear-gradient(135deg, rgba(187, 244, 81, 0.2), rgba(35, 83, 71, 0.4))',
-              border: '1px solid rgba(187, 244, 81, 0.5)',
+              background: 'linear-gradient(135deg, rgba(187, 244, 81, 0.18), rgba(35, 83, 71, 0.35))',
+              border: '1px solid rgba(187, 244, 81, 0.45)',
               color: '#bbf451',
-              padding: '4px 12px',
+              padding: '3px 10px',
               borderRadius: 999,
-              fontSize: 11,
+              fontSize: 10.5,
               fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              boxShadow: '0 0 15px rgba(187, 244, 81, 0.2)'
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase'
             }}>
               Autonomous Cloud AI Operating System
             </span>
-            <span style={{ fontSize: 12, color: 'var(--c-sage)', fontWeight: 600 }}>
-              Sovereign Performance & Cost Intelligence
+            <span style={{ fontSize: 11, color: 'var(--c-sage)', fontWeight: 600 }}>
+              $0 Upfront • Pure Gain-Share
             </span>
           </div>
+
           <h1 style={{
             fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
-            fontSize: 'clamp(24px, 4.5vw, 34px)',
+            fontSize: 'clamp(20px, 2.6vw, 25px)',
             fontWeight: 900,
-            lineHeight: 1.2,
-            margin: '6px 0 12px 0',
-            letterSpacing: '-0.025em',
-            background: 'linear-gradient(135deg, #FFFFFF 0%, #DAF1DE 55%, #bbf451 100%)',
+            lineHeight: 1.25,
+            margin: '4px 0 6px 0',
+            letterSpacing: '-0.02em',
+            background: 'linear-gradient(135deg, #FFFFFF 0%, #DAF1DE 60%, #bbf451 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             wordBreak: 'break-word'
           }}>
-            Autonomous AI Infrastructure: Slashing Cloud Spend & Eliminating GPU Waste
+            Autonomous AI Infrastructure: Slashing Cloud Spend by up to 35%
           </h1>
-          <div style={{
-            fontSize: 'clamp(13px, 1.8vw, 14.5px)',
+
+          <p style={{
+            fontSize: 13,
             color: 'var(--c-sage)',
             margin: 0,
-            maxWidth: 820,
-            lineHeight: 1.6,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6
+            lineHeight: 1.5,
+            maxWidth: 760
           }}>
-            <div>
-              <strong style={{ color: '#bbf451', fontWeight: 800 }}>What AETHEL Does:</strong>{' '}
-              <span>
-                Consolidates 4 disparate tools (DCGM, CAST AI, Zeus, vLLM) into one sovereign operating system that dynamically optimizes model precision, routes prompts to optimal parameter tiers, and balances GPU thermal loads.
-              </span>
-            </div>
-            <div>
-              <strong style={{ color: '#4ade80', fontWeight: 800 }}>What AETHEL Solves:</strong>{' '}
-              <span>
-                Stops silent thermal throttling (-35% clock drops), eliminates paying $1.80/M tokens on trivial queries, and guarantees zero accuracy loss—all on a pure gain-share model with $0 upfront cost.
-              </span>
-            </div>
-          </div>
+            <strong style={{ color: '#DAF1DE' }}>What AETHEL Solves:</strong> Replaces 4 fragmented tools (DCGM, CAST AI, Zeus, vLLM) with one autonomous system. Stops GPU thermal throttling, eliminates paying $1.80/M tokens on trivial queries, and cuts cloud bills with 100% verified accuracy.
+          </p>
         </div>
 
-        {/* 3 Core Headline Metrics */}
-        <div className="executive-metrics-grid" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', width: '100%', maxWidth: 440 }}>
+        {/* 3 Compact Metric Pills */}
+        <div style={{
+          display: 'flex',
+          gap: 10,
+          flexWrap: 'wrap',
+          alignItems: 'center'
+        }}>
           <div style={{
             background: 'rgba(5, 31, 32, 0.85)',
             border: '1px solid rgba(142, 182, 155, 0.25)',
-            borderRadius: 12,
-            padding: '12px 14px',
+            borderRadius: 10,
+            padding: '8px 14px',
             textAlign: 'center',
-            flex: '1 1 90px',
-            minWidth: 0
+            minWidth: 95
           }}>
-            <div style={{ fontSize: 11, color: 'var(--c-sage)', fontWeight: 600 }}>PROCESSING SPEED</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#bbf451', marginTop: 2 }}>Full Speed</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>No slowdowns</div>
+            <div style={{ fontSize: 9.5, color: 'var(--c-sage)', fontWeight: 700, letterSpacing: '0.05em' }}>GPU SPEED</div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: '#bbf451', marginTop: 1 }}>Full Speed</div>
+            <div style={{ fontSize: 9.5, color: '#4ade80' }}>0% Throttling</div>
           </div>
 
           <div style={{
             background: 'rgba(5, 31, 32, 0.85)',
-            border: '1px solid rgba(142, 182, 155, 0.25)',
-            borderRadius: 12,
-            padding: '12px 14px',
+            border: '1px solid rgba(56, 189, 248, 0.3)',
+            borderRadius: 10,
+            padding: '8px 14px',
             textAlign: 'center',
-            flex: '1 1 90px',
-            minWidth: 0
+            minWidth: 95
           }}>
-            <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>BILL REDUCTION</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#38bdf8', marginTop: 2 }}>Up to 35% Cut</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>Direct savings</div>
+            <div style={{ fontSize: 9.5, color: 'var(--c-sage)', fontWeight: 700, letterSpacing: '0.05em' }}>BILL CUT</div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: '#38bdf8', marginTop: 1 }}>Up to 35%</div>
+            <div style={{ fontSize: 9.5, color: 'var(--c-sage)' }}>Direct Savings</div>
           </div>
 
           <div style={{
             background: 'rgba(5, 31, 32, 0.85)',
-            border: '1px solid rgba(142, 182, 155, 0.25)',
-            borderRadius: 12,
-            padding: '12px 14px',
+            border: '1px solid rgba(74, 222, 128, 0.3)',
+            borderRadius: 10,
+            padding: '8px 14px',
             textAlign: 'center',
-            flex: '1 1 90px',
-            minWidth: 0
+            minWidth: 95
           }}>
-            <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>SERVER HEALTH</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: '#4ade80', marginTop: 2 }}>Protected</div>
-            <div style={{ fontSize: 10, color: 'var(--c-sage)' }}>0% crash risk</div>
+            <div style={{ fontSize: 9.5, color: 'var(--c-sage)', fontWeight: 700, letterSpacing: '0.05em' }}>ACCURACY</div>
+            <div style={{ fontSize: 16, fontWeight: 900, color: '#4ade80', marginTop: 1 }}>99.95%</div>
+            <div style={{ fontSize: 9.5, color: 'var(--c-sage)' }}>Zero Drift</div>
           </div>
         </div>
       </div>
