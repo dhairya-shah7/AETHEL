@@ -426,7 +426,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                 <ShieldCheck size={20} color="#bbf451" />
                 <div>
                   <div style={{ fontSize: 12, fontWeight: 800, color: '#bbf451' }}>
-                    MATHEMATICAL QUALITY GATE ENFORCED (THRESHOLD $\ge 0.990$)
+                    MATHEMATICAL QUALITY GATE ENFORCED (THRESHOLD: ≥ 0.990)
                   </div>
                   <div style={{ fontSize: 11, color: 'var(--c-sage)' }}>
                     AETHEL executes real-time cosine similarity validation. Any candidate that drops below 0.990 triggers instant automatic rollback to prevent hallucinations.

@@ -280,9 +280,18 @@ class RealHardwareOptimizer:
             "recommended": False
         })
 
-        # Autonomous Decision: Pick lowest memory candidate that PASSED the quality gate (>= 0.990)
-        valid_candidates = [c for c in candidates if c["passed_gate"] and c["cosine_similarity"] >= 0.990]
-        optimal_candidate = max(valid_candidates, key=lambda c: c["memory_reduction_pct"]) if valid_candidates else candidates[0]
+        # Autonomous Pareto Decision:
+        # Production AI workloads require near-lossless fidelity (cosine similarity >= 0.998)
+        # to ensure zero reasoning degradation and prevent silent hallucinations.
+        lossless_candidates = [c for c in candidates if c.get("passed_gate") and c.get("cosine_similarity", 0) >= 0.998]
+        if lossless_candidates:
+            optimal_candidate = max(lossless_candidates, key=lambda c: c["memory_reduction_pct"])
+        else:
+            valid_candidates = [c for c in candidates if c.get("passed_gate") and c.get("cosine_similarity", 0) >= 0.990]
+            optimal_candidate = max(valid_candidates, key=lambda c: c["memory_reduction_pct"]) if valid_candidates else candidates[0]
+
+        for c in candidates:
+            c["recommended"] = (c["id"] == optimal_candidate["id"])
 
         return {
             "success": True,
