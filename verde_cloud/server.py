@@ -21,6 +21,8 @@ from verde_cloud.compliance.brsr_reporter import SebiBrsrAuditReporter
 from verde_cloud.thermal.co_scheduler import CoScheduler
 from verde_cloud.engine.real_optimizer import RealHardwareOptimizer
 from verde_cloud.engine.trace_player import TracePlayer
+from verde_cloud.engine.workload_compiler import SemanticModelRouter, ToolReplacementArbiter
+from verde_cloud.engine.carbon_arbiter import SpatialCarbonArbiter
 from verde_cloud.data.traces.dataset_registry import AUTHENTICATED_DATASETS
 
 app = FastAPI(
@@ -99,6 +101,20 @@ class BenchmarkRequest(BaseModel):
     iterations: int = Field(default=30, ge=5, le=100)
     hidden_dim: int = Field(default=2048, ge=512, le=4096)
 
+class AdaptiveBenchmarkRequest(BaseModel):
+    iterations: int = Field(default=25, ge=5, le=100)
+    hidden_dim: int = Field(default=2048, ge=512, le=4096)
+
+class PromptRouteRequest(BaseModel):
+    prompt: str = Field(default="Classify whether this incoming customer message is a billing inquiry or technical outage.")
+
+class SpatialDispatchRequest(BaseModel):
+    workload_kwh: float = Field(default=120.0, ge=1.0)
+    payload_gb: float = Field(default=15.0, ge=0.1)
+    source_region: str = "ap-south-1"
+    target_region: str = "us-west-2"
+    is_flexible_batch: bool = True
+
 # ----------------- Endpoints -----------------
 
 @app.get("/api/health")
@@ -109,8 +125,11 @@ def health():
         "version": "2.4.0",
         "active_rapl_counters": True,
         "nvml_available": True,
-        "sebi_brsr_ready": True,
+        "global_esg_ready": True,
+        "ghg_protocol_scope2_ready": True,
+        "iso_21031_sci_compliant": True,
         "gainshare_engine_active": True,
+        "autonomous_governor_active": True,
         "timestamp": time.time()
     }
 
@@ -383,6 +402,33 @@ def run_live_benchmark(req: BenchmarkRequest = BenchmarkRequest()):
     """Executes a real deep neural network benchmark live on host silicon."""
     opt = RealHardwareOptimizer(hidden_dim=req.hidden_dim, batch_size=64)
     return opt.run_live_benchmark(iterations=req.iterations)
+
+@app.post("/api/engine/adaptive-benchmark")
+def run_adaptive_benchmark(req: AdaptiveBenchmarkRequest = AdaptiveBenchmarkRequest()):
+    """Executes real PyTorch multi-precision benchmark with Cosine Similarity accuracy gate."""
+    opt = RealHardwareOptimizer(hidden_dim=req.hidden_dim, batch_size=64)
+    return opt.run_adaptive_precision_benchmark(iterations=req.iterations)
+
+@app.post("/api/engine/route-workload")
+def route_workload(req: PromptRouteRequest):
+    """Analyzes prompt complexity and autonomously routes to 8B, 14B, or 70B tier."""
+    return SemanticModelRouter.analyze_prompt_complexity(req.prompt)
+
+@app.get("/api/engine/replacement-matrix")
+def get_replacement_matrix():
+    """Returns the head-to-head comparison proving why AETHEL replaces DCGM, CAST AI, Zeus, and vLLM."""
+    return ToolReplacementArbiter.get_head_to_head_matrix()
+
+@app.post("/api/engine/spatial-dispatch")
+def evaluate_spatial_dispatch(req: SpatialDispatchRequest):
+    """Evaluates multi-region carbon dispatch factoring in physical network egress penalty."""
+    return SpatialCarbonArbiter.evaluate_spatial_dispatch(
+        workload_kwh=req.workload_kwh,
+        payload_gb=req.payload_gb,
+        source_region=req.source_region,
+        target_region=req.target_region,
+        is_flexible_batch=req.is_flexible_batch
+    )
 
 @app.get("/api/trace/datasets")
 def get_authenticated_datasets():

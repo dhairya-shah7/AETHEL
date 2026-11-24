@@ -340,8 +340,35 @@ select option {
   display: none;
 }
 
+/* Universal Responsive Grid Utility Classes */
+.grid-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.grid-split > * {
+  height: fit-content;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.input-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
 /* Tablet & Mobile Breakpoint (Below 1024px) */
 @media (max-width: 1023px) {
+  .grid-split, .grid-2col, .input-grid-2col {
+    grid-template-columns: 1fr !important;
+  }
   /* Hide desktop side dock */
   .sidebar-dock-desktop {
     display: none !important;
@@ -352,45 +379,17 @@ select option {
     display: none !important;
   }
 
-  /* Show clean mobile header with ONLY the single normal page name */
+  /* Remove mobile top header on mobile & tablet (page name is visible on bottom navigation) */
   .navbar-mobile {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    top: 12px;
-    z-index: 100;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px 18px;
-    background: rgba(5, 31, 32, 0.90);
-    backdrop-filter: blur(28px) saturate(190%);
-    -webkit-backdrop-filter: blur(28px) saturate(190%);
-    border-radius: 9999px;
-    border: 1px solid rgba(187, 244, 81, 0.35);
-    box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.75), 0 0 20px rgba(187, 244, 81, 0.15);
+    display: none !important;
   }
 
-  .navbar-mobile-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #bbf451;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  /* Main container takes full width with safe padding at the bottom */
+  /* Main container takes full width with safe padding at top & bottom */
   .app-main-viewport {
     margin-left: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0 16px calc(96px + env(safe-area-inset-bottom, 16px)) 16px !important;
+    padding: calc(18px + env(safe-area-inset-top, 0px)) 16px calc(96px + env(safe-area-inset-bottom, 16px)) 16px !important;
   }
 
   /* Show floating bottom navigation bar */

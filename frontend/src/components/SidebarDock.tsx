@@ -22,15 +22,9 @@ interface SidebarDockProps {
 export const SidebarDock: React.FC<SidebarDockProps> = ({ activeTab, setActiveTab }) => {
   const navItems: { id: TabType; label: string; shortLabel: string; icon: React.ReactNode }[] = [
     { id: 'showcase', label: '1. Executive Overview', shortLabel: 'Overview', icon: <Sparkles size={18} /> },
-    { id: 'cockpit', label: '2. Live Silicon Engine', shortLabel: 'Live Engine', icon: <Cpu size={18} /> },
+    { id: 'cockpit', label: '2. Live Silicon Engine', shortLabel: 'Live Test', icon: <Cpu size={18} /> },
     { id: 'gainshare', label: '3. Cloud Savings Calculator', shortLabel: 'Savings', icon: <Zap size={18} /> },
-    { id: 'overview', label: '4. System Diagnostics', shortLabel: 'Diagnostics', icon: <Layers size={18} /> },
-    { id: 'thermal', label: '5. ThermalOps Co-Scheduler', shortLabel: 'ThermalOps', icon: <Flame size={18} /> },
-    { id: 'telemetry', label: '6. Kernel RAPL Telemetry', shortLabel: 'Telemetry', icon: <Activity size={18} /> },
-    { id: 'boavizta', label: '7. Boavizta Carbon Engine', shortLabel: 'Carbon', icon: <Cpu size={18} /> },
-    { id: 'governance', label: '8. SEBI BRSR Compliance', shortLabel: 'SEBI ESG', icon: <ShieldCheck size={18} /> },
-    { id: 'sandbox', label: '9. CI/CD AST Sandbox', shortLabel: 'Sandbox', icon: <Terminal size={18} /> },
-    { id: 'marketplace', label: '10. Cloud Marketplace', shortLabel: 'Marketplace', icon: <Store size={18} /> },
+    { id: 'overview', label: '4. System Diagnostics & Global ESG', shortLabel: 'Diagnostics', icon: <Layers size={18} /> },
   ];
 
   return (

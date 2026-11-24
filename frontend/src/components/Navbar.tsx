@@ -39,7 +39,7 @@ const tabMeta: Record<TabType, { title: string; subtitle: string; icon: React.Re
   showcase: { title: '1. Overview', subtitle: 'How AETHEL Protects Servers & Cuts Bills', icon: <Sparkles size={16} /> },
   cockpit: { title: '2. Live Test', subtitle: 'Real Memory Savings Test & Cloud Traffic Replay', icon: <Cpu size={16} /> },
   gainshare: { title: '3. Savings Calculator', subtitle: 'Calculate Exact Cash & Carbon Saved on AWS, Azure & GCP', icon: <Zap size={16} /> },
-  overview: { title: '4. Diagnostics', subtitle: 'Detailed Server Health, Telemetry & Reports', icon: <Layers size={16} /> },
+  overview: { title: '4. Diagnostics & Global ESG', subtitle: 'Global GHG Protocol Scope 2 & Multi-Region Telemetry', icon: <Layers size={16} /> },
   thermal: { title: 'ThermalOps Co-Scheduler', subtitle: 'Silicon Thermal Equilibrium & Resilience Bunker', icon: <Flame size={16} /> },
   telemetry: { title: 'Kernel Telemetry', subtitle: 'RAPL & NVML Power Oscilloscope', icon: <Activity size={16} /> },
   boavizta: { title: 'Boavizta SCI Engine', subtitle: 'Hardware Embodied & Operational Carbon', icon: <Cpu size={16} /> },
@@ -221,14 +221,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <option value="virginia" style={{ background: '#0B2B26', color: '#FFF' }}>us-east-1 (N. Virginia)</option>
             </select>
           </div>
-        </div>
-      </header>
-
-      {/* 2. MOBILE / TABLET HEADER (< 1024px): A SINGLE CLEAN NORMAL PAGE NAME ON TOP */}
-      <header className="app-top-navbar navbar-mobile">
-        <div className="navbar-mobile-title">
-          {current.icon}
-          <span>{current.title}</span>
         </div>
       </header>
     </>
