@@ -183,10 +183,7 @@ export const ExecutiveShowcasePage: React.FC<ExecutiveShowcasePageProps> = ({ on
       </div>
 
       {/* 3. THE DEFINITIVE SIDE-BY-SIDE SPLIT SCREEN */}
-      <div className="responsive-split-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: 24,
+      <div className="grid-split" style={{
         marginBottom: 28
       }}>
         {/* LEFT CARD: WITHOUT AETHEL (Status Quo / High Risk) */}

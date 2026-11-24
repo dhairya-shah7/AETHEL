@@ -335,7 +335,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
             {/* Candidate Cards Grid */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
               gap: 14,
               marginBottom: 20
             }}>
@@ -497,14 +497,15 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
             </div>
 
             {/* Interactive Prompt Box */}
-            <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+            <div style={{ display: 'flex', gap: 10, marginBottom: 20, flexWrap: 'wrap' }}>
               <input
                 type="text"
                 value={routerPrompt}
                 onChange={(e) => setRouterPrompt(e.target.value)}
                 placeholder="Enter any AI prompt to test autonomous routing..."
                 style={{
-                  flex: 1,
+                  flex: '1 1 240px',
+                  minWidth: 0,
                   background: 'rgba(2, 13, 14, 0.85)',
                   border: '1px solid rgba(35, 83, 71, 0.6)',
                   borderRadius: 12,
@@ -531,7 +532,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
 
             {/* Routing Decision Output */}
             {routingResult && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 16 }}>
                 {/* Decision Card */}
                 <div style={{
                   background: 'rgba(2, 13, 14, 0.75)',
@@ -783,7 +784,7 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
 
             {/* Split Comparison */}
             {traceFrame && (
-              <div className="responsive-split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+              <div className="grid-split">
                 {/* Unmanaged Side */}
                 <div style={{
                   background: 'rgba(239, 68, 68, 0.08)',

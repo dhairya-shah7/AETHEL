@@ -140,9 +140,8 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
           </div>
         </div>
 
-        <div style={{
+        <div className={comparisonMode === 'both' ? 'grid-split' : ''} style={{
           display: 'grid',
-          gridTemplateColumns: comparisonMode === 'both' ? '1fr 1fr' : '1fr',
           gap: 20
         }}>
           {/* A. WITHOUT AETHEL */}
@@ -248,7 +247,7 @@ export const OverviewPage: React.FC<OverviewPageProps> = ({
       {/* 3. EXECUTIVE MASTER KPIS */}
       <section style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
         gap: 20,
         maxWidth: 1280,
         margin: '0 auto',
