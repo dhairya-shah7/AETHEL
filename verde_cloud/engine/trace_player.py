@@ -79,9 +79,9 @@ class TracePlayer:
 
             # AETHEL-Managed: catches surge 180s early (at sec 30) and engages INT8 quantization & micro-DVFS
             if is_surging and sec >= 30:
-                # Proactive stabilization: capped power, INT8 downshift sheds 40% memory bus heat
-                stabilized_temp = round(min(69.5, 64.0 + (sec - 25) * 0.12), 1)
+                # Dynamic thermal physics: 28% power reduction via INT8 reduces delta-T above 24°C ambient proportionally
                 aethel_power = round(node["power_draw_w"] * 0.72, 1)
+                stabilized_temp = round(24.0 + 0.72 * (raw_temp - 24.0), 1)
                 aethel_status = "CORDONED_INT8_STABILIZED"
                 precision = "INT8"
                 preemptive_alerts.append({
