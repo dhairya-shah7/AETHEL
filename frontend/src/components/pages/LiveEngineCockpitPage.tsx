@@ -611,7 +611,15 @@ export const LiveEngineCockpitPage: React.FC<LiveEngineCockpitPageProps> = ({
                     </div>
                   </div>
                   <div style={{ fontSize: 10.5, color: 'var(--c-sage)', marginTop: 2, borderTop: '1px solid rgba(35, 83, 71, 0.4)', paddingTop: 6 }}>
-                    Unmanaged setups burn <strong style={{ color: '#fca5a5' }}>+{routingResult.autonomous_savings_vs_unmanaged_70b.power_saved_watts}W</strong> on this query with 0 extra accuracy.
+                    {routingResult.routing_decision.selected_tier === 'large_70b' ? (
+                      <>
+                        <strong style={{ color: '#bbf451' }}>Accuracy Protected:</strong> Complex reasoning/code requires full 70B capacity — 0% quality compromise.
+                      </>
+                    ) : (
+                      <>
+                        Unmanaged setups burn <strong style={{ color: '#fca5a5' }}>+{routingResult.autonomous_savings_vs_unmanaged_70b.power_saved_watts}W</strong> on this query with 0 extra accuracy.
+                      </>
+                    )}
                   </div>
                 </div>
 
